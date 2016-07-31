@@ -1,0 +1,8 @@
+.pops-card {
+    padding: 0 0 $unit__m;
+    &__title {
+        @include font--italic();
+        font-size: 24px;
+        text-transform: capitalize;
+    }
+}

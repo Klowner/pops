@@ -1,0 +1,32 @@
+// Colors
+$grey--light: #e0e6ed;
+$grey--accent: #f9fafc;
+$grey--dull: #8492a6;
+$black: #333;
+
+// Units
+$base: 10px;
+$unit__s: $base;
+$unit__m: $base * 2;
+$unit__l: $base * 3;
+
+// Font
+$font-family: 'Open Sans', sans-serif;
+@mixin font--regular() {
+    font-family: $font-family;
+    font-weight: 400;
+}
+@mixin font--italic() {
+    font-family: $font-family;
+    font-weight: 300;
+    font-style: italic;
+}
+
+// Screen Break
+$breakpoint: 1080px;
+
+@mixin smallScreen {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}

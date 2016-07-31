@@ -1,0 +1,20 @@
+.pops-side-nav {
+    flex: 0 0 14em;
+    height: 100%;
+    position: relative;
+    @include smallScreen {
+        flex: 100%;
+        height: auto;
+    }
+    &__inner {
+        background: $grey--accent;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        width: 14em;
+        @include smallScreen {
+            position: relative;
+            width: 100%;
+        }
+    }
+}
