@@ -5,4 +5,10 @@
         font-size: 24px;
         text-transform: capitalize;
     }
+
+    &__overview {
+        background: $tan;
+        color: $black--dark;
+        padding: $unit__m;
+    }
 }

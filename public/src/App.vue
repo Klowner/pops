@@ -28,6 +28,7 @@
                 }, (response) => {
                     console.log('Could not get /api/db')
                 })
+
         },
         data() {
             return {

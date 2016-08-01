@@ -1,25 +1,27 @@
 <template>
     <article class="pops-card pops-card--pattern" id="{{pattern.name}}">
-        <h1 class="pops-card__title">{{ pattern.name }}</h1>
-        <style>
-            {{{pattern.style}}}
-        </style>
-        <div class="pops-card__content">
-            {{{ pattern.template }}}
-        </div>
+        <a :href="url" class="pops-card__link"><h1 class="pops-card__title">{{ pattern.name }}</h1></a>
+
+        <iframe :src="url" class="pops-card__iframe"></iframe>
 
         <tab-set :active="0">
             <tab header="Overview">
-                <div v-html="pattern.doc | markdown"></div>
+                <div class="pops-card__overview" v-if="pattern.doc" v-html="pattern.doc | markdown"></div>
+                <div class="pops-card__overview" v-if="!pattern.doc">
+                    No overview for {{pattern.name}}
+                </div>
             </tab>
             <tab header="Template">
-                <pre><code>{{ pattern.template }}</code></pre>
+                <pre><code class="language-markup" v-if="pattern.template">{{ pattern.template }}</code></pre>
+                <pre><code class="language-markup" v-if="!pattern.template">No template available for {{ pattern.name }}</code></pre>
             </tab>
             <tab header="StyleSheet">
-                <pre><code>{{ pattern.style }}</code></pre>
+                <pre><code class="language-css" v-if="pattern.style">{{ pattern.style }}</code></pre>
+                <pre><code class="language-css" v-if="!pattern.style">No style available for {{ pattern.name }}</code></pre>
             </tab>
             <tab header="Script">
-                <pre><code>{{ pattern.script }}</code></pre>
+                <pre><code class="language-js" v-if="pattern.script">{{ pattern.script }}</code></pre>
+                <pre><code class="language-js" v-if="!pattern.script">No script available for {{ pattern.name }}</code></pre>
             </tab>
         </tab-set>
     </article>
@@ -40,8 +42,19 @@
                     let newPattern = data.patterns.find((x) => x.name === this.pattern.name)
                     
                     this.pattern = newPattern
+
+                    Prism.highlightAll()
                 }
             })
+        },
+        ready() {
+            this.url = `/demo?type=patterns&name=${this.pattern.name}`
+            Prism.highlightAll()
+        },
+        data() {
+            return {
+                url: ''
+            }
         }
     }
 </script>

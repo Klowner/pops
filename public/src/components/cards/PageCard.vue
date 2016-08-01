@@ -1,9 +1,7 @@
 <template>
     <article class="pops-card pops-card--page" id="{{page.name}}">
-        <h1 class="pops-card__title">{{ page.name }}</h1>
-        <div>
-            {{{ page.content }}}
-        </div>
+        <a :href="url" class="pops-card__link"><h1 class="pops-card__title">{{ page.name }}</h1></a>
+        <iframe :src="url" class="pops-card__iframe"></iframe>
     </article>
 </template>
 
@@ -18,6 +16,14 @@
                     this.page = newPage
                 }
             })
+        },
+        ready() {
+            this.url = `/demo?type=pages&name=${this.page.name}`
+        },
+        data() {
+            return {
+                url: ''
+            }
         }
     }
 </script>
