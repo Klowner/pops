@@ -12,6 +12,7 @@ Install globally for best use.
 Once installed you will have access to the pops commandline-client.
 
     $ pops
+      
       ██████╗  ██████╗ ██████╗ ███████╗
       ██╔══██╗██╔═══██╗██╔══██╗██╔════╝
       ██████╔╝██║   ██║██████╔╝███████╗

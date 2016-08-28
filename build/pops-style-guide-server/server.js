@@ -15,13 +15,13 @@ var Server = (function () {
         this.start();
     }
     Server.prototype.setup = function () {
-        this.app.use('/dist', express.static(path.join(__dirname, '../../public/dist')));
+        this.app.use('/dist', express.static(path.join(__dirname, '../../pops-style-guide-frontend/dist')));
         this.app.use('/api', require('json-server').router(this.db));
         this.app.get('/', function (req, res) {
-            res.sendFile(path.join(__dirname, '../../public/index.html'));
+            res.sendFile(path.join(__dirname, '../../pops-style-guide-frontend/index.html'));
         });
         this.app.get('/demo', function (req, res) {
-            res.sendFile(path.join(__dirname, '../../public/demo.html'));
+            res.sendFile(path.join(__dirname, '../../pops-style-guide-frontend/demo.html'));
         });
         this.io.on('connection', function (socket) { });
     };

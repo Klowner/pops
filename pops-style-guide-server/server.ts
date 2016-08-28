@@ -21,16 +21,16 @@ export class Server {
     }
 
     private setup(): void {
-        this.app.use('/dist', express.static(path.join(__dirname, '../../public/dist')))
+        this.app.use('/dist', express.static(path.join(__dirname, '../../pops-style-guide-frontend/dist')))
 
         this.app.use('/api', require('json-server').router(this.db))
 
         this.app.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname, '../../public/index.html'))
+            res.sendFile(path.join(__dirname, '../../pops-style-guide-frontend/index.html'))
         })
 
         this.app.get('/demo', (req, res) => {
-            res.sendFile(path.join(__dirname, '../../public/demo.html'))
+            res.sendFile(path.join(__dirname, '../../pops-style-guide-frontend/demo.html'))
         })
 
         this.io.on('connection', (socket) => { })
