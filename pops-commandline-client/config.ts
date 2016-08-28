@@ -5,7 +5,7 @@ function home(): string {
     if (process.platform == 'win32') {
         return process.env['USERPROFILE']
     } else {
-        process.env['HOME']
+        return process.env['HOME']
     }
 }
 

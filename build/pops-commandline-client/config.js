@@ -6,7 +6,7 @@ function home() {
         return process.env['USERPROFILE'];
     }
     else {
-        process.env['HOME'];
+        return process.env['HOME'];
     }
 }
 var Config = (function () {

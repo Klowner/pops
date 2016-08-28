@@ -17,30 +17,32 @@ function root() {
     return path.join(folder, settings.src);
 }
 if (command) {
-    switch (command) {
-        case 'init':
-            require('./init');
-            break;
-        case 'watch':
-            new server_1.Server(root()).watch();
-            break;
-        case 'serve':
-            new server_1.Server(root());
-            break;
-        case 'make::page':
-            make_1.Make.page(args, settings);
-            break;
-        case 'make::pattern':
-            make_1.Make.pattern(args, settings);
-            break;
-        case 'make::overview':
-            make_1.Make.overview(args, settings);
-            break;
-        case 'make::component':
-            make_1.Make.component(args, settings);
-            break;
-        default:
-            console.error("Command " + chalk.red.bold(command) + " not recognised");
+    if (command === 'init') {
+        require('./init');
+    }
+    else {
+        switch (command) {
+            case 'watch':
+                new server_1.Server(root()).watch();
+                break;
+            case 'serve':
+                new server_1.Server(root());
+                break;
+            case 'make::page':
+                make_1.Make.page(args, settings);
+                break;
+            case 'make::pattern':
+                make_1.Make.pattern(args, settings);
+                break;
+            case 'make::overview':
+                make_1.Make.overview(args, settings);
+                break;
+            case 'make::component':
+                make_1.Make.component(args, settings);
+                break;
+            default:
+                console.error("Command " + chalk.red.bold(command) + " not recognised");
+        }
     }
 }
 else {
