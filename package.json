@@ -1,12 +1,12 @@
 {
     "name": "pops",
-    "version": "0.0.1",
+    "version": "0.0.1-dev",
     "description": "A commandline client that is capable of generating styleguides, and styleguide based workflows.",
     "main": "build/pops-commandline-client/pops.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": [],
+    "keywords": ["styleguide", "pattern", "library", "guide", "style"],
     "preferGlobal": "true",
     "bin": {
         "pops": "build/pops-commandline-client/pops.js"
