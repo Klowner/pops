@@ -4,7 +4,7 @@ import * as chalk from 'chalk'
 
 import {popsConfigTemplate} from './templates/popsConfigTemplate'
 
-export const init = (function () {
+export const init = (function() {
     let filePath: string = path.join(process.cwd(), 'pops.config.js')
 
     if (fs.existsSync(filePath)) {

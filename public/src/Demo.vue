@@ -1,4 +1,5 @@
 <template>
+    <style v-if="item.style">{{{ item.style }}}</style>
     <div v-if="item.template">{{{ item.template }}}</div>
     <div v-if="item.content">{{{ item.content }}}</div>
 </template>
@@ -10,18 +11,18 @@
         if (!url) {
             url = window.location.href
         }
-        
+
         let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
         let results = regex.exec(url)
-        
+
         if (!results) {
             return null
         }
-        
+
         if (!results[2]) {
             return ''
         }
-        
+
         return decodeURIComponent(results[2].replace(/\+/g, ' '))
     }
 
@@ -30,7 +31,7 @@
             let type = getParameterByName('type')
             let name = getParameterByName('name')
             let url = `/api/${type}?name=${name}`
-            
+
             this.$http.get(url)
                 .then((response) => {
                     let data = JSON.parse(response.body)[0]
@@ -38,6 +39,15 @@
                 }, (response) => {
                     console.log(`Could not get ${url}`)
                 })
+        },
+        created() {
+            socket.on('components', (data) => {
+                if (data.name === this.item.name) {
+                    let newComponent = data.components.find((x) => x.name === this.item.name)
+
+                    this.item = newComponent
+                }
+            })
         },
         data() {
             return {

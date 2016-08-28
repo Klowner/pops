@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as chalk from 'chalk'
 import * as mkdirp from 'mkdirp'
 
-const updateImport: Function = (dir: string, type: string, name: string, ext: string): void => {
+function updateImport(dir: string, type: string, name: string, ext: string): void {
     let importStatement: string
     let file: string = path.join(dir, `${type}.${ext}`)
 
@@ -20,7 +20,7 @@ const updateImport: Function = (dir: string, type: string, name: string, ext: st
     }
 }
 
-export const fileCreator: Function = (dir: string, type: string, name: string, files: any[]) => {
+export function fileCreator(dir: string, type: string, name: string, files: any[]) {
     let target: string = path.join(dir, name)
 
     if (fs.existsSync(target)) {

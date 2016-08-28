@@ -1,17 +1,18 @@
+#! /usr/bin/env node
 import * as path from 'path'
 import * as chalk from 'chalk'
 import * as yargs from 'yargs'
 
 import {Make} from './make'
 import {Config} from './config'
-import {Server} from '../app/server'
+import {Server} from '../pops-style-guide-server/server'
 
-const config: Config = new Config()
-const settings: any = require(config.getConfig())
-const input: string[] = yargs.argv._
-const [command, ...args] = input
+let config: Config = new Config()
+let settings: any = require(config.getConfig())
+let input: string[] = yargs.argv._
+let [command, ...args] = input
 
-const root: Function = (): string => {
+function root(): string {
     let configPath: string = config.getConfig()
     let basename: string = path.basename(configPath)
     let folder: string = configPath.replace(basename, '')
@@ -48,4 +49,3 @@ if (command) {
 } else {
     require('./help')
 }
-

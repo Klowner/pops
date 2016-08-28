@@ -1,13 +1,17 @@
 {
-  "name": "bin",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "pops",
+  "version": "0.0.1",
+  "description": "A commandline client that is capable of generating styleguides, and styleguide
+  based workflows.",
+  "main": "build/pops-commandline-client/pops.js",
   "scripts": {
-    "dev": "node node_modules/concurrently/src/main.js 'tsc -w' 'webpack --watch' 'node dist/bin/pops.js serve'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "preferGlobal": "true",
+  "bin": {
+    "pops" : "build/pops-commandline-client/pops.js"
+  },
   "author": "BrianDGLS <briandgls@yahoo.com>",
   "license": "ISC",
   "dependencies": {

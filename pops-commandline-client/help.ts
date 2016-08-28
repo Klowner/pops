@@ -20,6 +20,5 @@ Commands:
   ${chalk.bold('make::overview')}   Creates one or multiple overview/s
   ${chalk.bold('make::pattern')}    Creates one or multiple pattern/s
   ${chalk.bold('make::page')}       Creates one or multiple page/s
-
 `)
 }())

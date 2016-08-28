@@ -9,6 +9,8 @@ import marked from 'marked'
 
 Vue.use(VueResource)
 
+Vue.config.devtools = false
+
 Vue.filter('markdown', (value) => marked(value))
 
 if (document.body.id === 'demo') {

@@ -1,8 +1,13 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-const home: string = process.platform == 'win32' ?
-    process.env['USERPROFILE'] : process.env['HOME']
+function home(): string {
+    if (process.platform == 'win32') {
+        return process.env['USERPROFILE']
+    } else {
+        process.env['HOME']
+    }
+}
 
 export class Config {
     private dir: string = process.cwd()
@@ -15,7 +20,7 @@ export class Config {
     }
 
     private searchForConfigFile() {
-        while (this.dir !== home) {
+        while (this.dir !== home()) {
             let dirHasConfig = fs.readdirSync(this.dir).indexOf(this.configFileName)
 
             if (dirHasConfig) {

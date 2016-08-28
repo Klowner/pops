@@ -41,7 +41,7 @@ export class Server {
         data.name = name
         data[event] = Data[event](this.root)
 
-        this.io.emit(event, data);
+        this.io.emit(event, data)
     }
 
     private start(): void {
@@ -71,6 +71,10 @@ export class Server {
                 else if (filePath.indexOf('patterns')) { event = 'patterns' }
                 else if (filePath.indexOf('pages')) { event = 'pages' }
                 else if (filePath.indexOf('overviews')) { event = 'overviews' }
+
+                if (name === 'README') {
+                    name = filePath.split('/').slice(-2)[0]
+                }
 
                 this.eventEmit(event, name)
 
