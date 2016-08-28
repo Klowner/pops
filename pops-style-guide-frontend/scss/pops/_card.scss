@@ -12,8 +12,8 @@
     text-transform: capitalize;
   }
 
-  &__overview {
-    background: $tan;
+  &__overview, pre {
+    background: $grey--accent;
     color: $black--dark;
     padding: $unit__m;
   }

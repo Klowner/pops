@@ -27,11 +27,11 @@ export class PageStore implements Store {
 
                     if (fs.existsSync(index)) {
                         let data = require(index)
-                        
+
                         for(let key in data.paths) {
                             data[key] = fs.readFileSync(data.paths[key], 'utf8')
                         }
-                        
+
                         this.pages.push(data)
                     }
                 })

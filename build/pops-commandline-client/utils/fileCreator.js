@@ -4,7 +4,7 @@ var path = require('path');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
 function updateImport(dir, type, name, ext) {
-    var importStatement;
+    var importStatement = '';
     var file = path.join(dir, type + "." + ext);
     if (ext === 'scss' || ext === 'less') {
         importStatement = "\n@import '" + name + "/styles/" + name + "." + ext + "';";
@@ -13,6 +13,7 @@ function updateImport(dir, type, name, ext) {
         importStatement = "\nmodule.exports." + name.replace(' ', '-') + " = require('" + name + "/scripts/" + name + "." + ext + "');";
     }
     if (fs.existsSync(file)) {
+        console.log(importStatement);
         fs.appendFileSync(file, importStatement);
     }
     else {
@@ -34,7 +35,9 @@ function fileCreator(dir, type, name, files) {
             if (type === 'component' || type === 'pattern') {
                 var fileType = fileName.split('.').pop();
                 if (fileType === 'scss' || fileType === 'less' || fileType === 'js') {
-                    updateImport(dir, type, name, fileType);
+                    if (fileName !== 'index.js') {
+                        updateImport(dir, type, name, fileType);
+                    }
                 }
             }
         });

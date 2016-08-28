@@ -2,23 +2,28 @@
     &__inner {
         width: 100%;
     }
+
     &__list {
         list-style: none;
         padding: 0;
     }
+
     &__list-item {
         display: inline-block;
         padding: 0 $unit__s 0 0;
     }
+
     &__list-link {
         border-bottom: 2px solid transparent;
         color: $grey--dull;
         display: block;
         line-height: 32px;
         text-decoration: none;
+
         &:hover {
             border-bottom: 2px solid $black;
         }
+
         &--active {
             border-bottom: 2px solid $grey--dull;
             color: $black;

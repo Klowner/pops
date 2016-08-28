@@ -2,11 +2,13 @@
     input {
         display: none;
     }
+
     input:checked~ &__title {
         &:before {
             content: "-";
         }
     }
+
     &__title {
         background: white;
         border-bottom: 1px solid $grey--light;
@@ -19,6 +21,7 @@
         padding: $unit__m;
         text-transform: capitalize;
         z-index: 20;
+
         &:before {
             content: "+";
             display: inline-block;
@@ -26,23 +29,28 @@
             vertical-align: middle;
         }
     }
+
     &__inner {
         background: $grey--accent;
         height: 0;
         overflow: hidden;
     }
+
     input:checked~ &__inner {
         height: auto;
     }
+
     &__list {
         list-style: none;
         margin: 0;
         padding: 0;
     }
+
     &__list-item {
         border-bottom: 1px solid $grey--light;
         padding: $unit__s $unit__m;
     }
+
     &__list-link {
         color: $grey--dull;
         display: block;
@@ -50,6 +58,7 @@
         line-height: 32px;
         text-decoration: none;
         text-transform: capitalize;
+
         &:hover {
             text-decoration: underline;
         }

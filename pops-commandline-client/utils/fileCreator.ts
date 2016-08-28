@@ -4,7 +4,7 @@ import * as chalk from 'chalk'
 import * as mkdirp from 'mkdirp'
 
 function updateImport(dir: string, type: string, name: string, ext: string): void {
-    let importStatement: string
+    let importStatement: string = ''
     let file: string = path.join(dir, `${type}.${ext}`)
 
     if (ext === 'scss' || ext === 'less') {
@@ -14,13 +14,14 @@ function updateImport(dir: string, type: string, name: string, ext: string): voi
     }
 
     if (fs.existsSync(file)) {
+        console.log(importStatement)
         fs.appendFileSync(file, importStatement)
     } else {
         fs.writeFileSync(file, importStatement)
     }
 }
 
-export function fileCreator(dir: string, type: string, name: string, files: any[]) {
+export function fileCreator(dir: string, type: string, name: string, files: any[]): void {
     let target: string = path.join(dir, name)
 
     if (fs.existsSync(target)) {
@@ -39,7 +40,9 @@ export function fileCreator(dir: string, type: string, name: string, files: any[
             if (type === 'component' || type === 'pattern') {
                 let fileType: string = fileName.split('.').pop();
                 if (fileType === 'scss' || fileType === 'less' || fileType === 'js') {
-                    updateImport(dir, type, name, fileType)
+                    if (fileName !== 'index.js') {
+                        updateImport(dir, type, name, fileType)
+                    }
                 }
             }
         })

@@ -1,7 +1,7 @@
 <template>
     <aside class='pops-side-nav'>
         <div class="pops-side-nav__inner">
-            <dropdown v-for='group in groups'' v-bind:group='group'></dropdown>
+            <dropdown v-for='group in groups' v-bind:group='group'></dropdown>
         </div>
     </aside>
 </template>

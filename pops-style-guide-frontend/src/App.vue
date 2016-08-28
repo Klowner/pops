@@ -17,10 +17,7 @@
                     let data = JSON.parse(response.body)
                     let keys = Object.keys(data)
                     let groups = keys.map((key) => {
-                        return {
-                            name: key,
-                            items: data[key]
-                        }
+                        return { name: key, items: data[key] }
                     })
 
                     this.db = data
@@ -28,13 +25,9 @@
                 }, (response) => {
                     console.log('Could not get /api/db')
                 })
-
         },
         data() {
-            return {
-                db: {},
-                groups: []
-            }
+            return { db: {}, groups: [] }
         }
     }
 </script>
