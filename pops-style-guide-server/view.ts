@@ -1,4 +1,5 @@
 import {join} from 'path'
+import {readFileSync} from 'fs'
 import * as twig from 'twig'
 import * as hbs from 'handlebars'
 
@@ -56,8 +57,8 @@ export class View {
     private engine: any
     private templateExt: string
 
-    constructor() {
-        this.templateExt = config.ext.templates
+    constructor(ext: string) {
+        this.templateExt = ext || config.ext.templates
 
         switch (this.templateExt) {
             case 'twig':
@@ -75,5 +76,12 @@ export class View {
         item.view = this.engine.renderViewAsText(item.template, item.context)
 
         return item
+    }
+
+    public asText(src: string, context: any): string {
+        let content = readFileSync(src, 'utf8')
+        let view: string = this.engine.renderViewAsText(content, context)
+
+        return view
     }
 }

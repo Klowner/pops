@@ -1,32 +1,58 @@
 import * as path from 'path'
 import * as chalk from 'chalk'
+import * as hbs from 'handlebars'
 import * as express from 'express'
 
 import {Watch} from './watch'
 import {Data} from './data'
+import {View} from './view'
 
 export class Server {
     private db: any
     private root: string
+    private settings: any
+    private globals: any
+    private view: View
     private app = express()
     private http = require('http').Server(this.app)
     private io = require('socket.io')(this.http)
 
-    constructor(root: string) {
-        this.root = root
+    constructor(settings: any) {
+        this.view = new View('hbs')
+        this.settings = settings
+        this.root = this.settings.src
         this.db = Data.all(this.root)
+        this.globals = settings.globals
 
         this.setup()
         this.start()
     }
 
     private setup(): void {
-        this.app.use('/dist', express.static(path.join(__dirname, '../..','pops-style-guide-frontend/dist')))
+        this.app.use('/dist', express.static(path.join(__dirname, '../..', 'pops-style-guide-frontend/dist')))
 
         this.app.use('/api', require('json-server').router(this.db))
 
         this.app.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname, '../..', 'pops-style-guide-frontend/index.html'))
+            let indexFile = path.join(__dirname, '../..', 'pops-style-guide-frontend/index.html')
+
+            res.sendFile(indexFile)
+        })
+
+        this.app.get('/:type/:name', (req, res) => {
+            let type = req.params.type
+            let name = req.params.name
+            let item = this.db[type].find(x => x.name === name)
+
+            let demoFile = path.join(__dirname, '../..', 'pops-style-guide-frontend/demo.html')
+            let data = {
+                item: item,
+                globals: this.globals
+            }
+
+            let view = this.view.asText(demoFile, data)
+
+            res.send(view)
         })
 
         this.io.on('connection', (socket) => { })

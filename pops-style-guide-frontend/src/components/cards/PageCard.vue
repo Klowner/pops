@@ -3,7 +3,7 @@
         <a :href="url" class="pops-card__link">
           <h1 class="pops-card__title">{{ page.name }}</h1>
         </a>
-        <div>{{{ page.template }}}</div>
+        <div>{{{ page.view }}}</div>
     </article>
 </template>
 

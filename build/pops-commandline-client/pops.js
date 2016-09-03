@@ -16,10 +16,10 @@ if (command) {
     else {
         switch (command) {
             case 'watch':
-                new server_1.Server(settings.src).watch();
+                new server_1.Server(settings).watch();
                 break;
             case 'serve':
-                new server_1.Server(settings.src);
+                new server_1.Server(settings);
                 break;
             case 'make::page':
                 make_1.Make.page(args, settings);

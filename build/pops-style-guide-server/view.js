@@ -1,5 +1,6 @@
 "use strict";
 var path_1 = require('path');
+var fs_1 = require('fs');
 var twig = require('twig');
 var hbs = require('handlebars');
 var config_1 = require('../pops-commandline-client/config');
@@ -42,8 +43,8 @@ var Handlebars = (function () {
     return Handlebars;
 }());
 var View = (function () {
-    function View() {
-        this.templateExt = config.ext.templates;
+    function View(ext) {
+        this.templateExt = ext || config.ext.templates;
         switch (this.templateExt) {
             case 'twig':
                 this.engine = new Twig();
@@ -58,6 +59,11 @@ var View = (function () {
     View.prototype.addView = function (item) {
         item.view = this.engine.renderViewAsText(item.template, item.context);
         return item;
+    };
+    View.prototype.asText = function (src, context) {
+        var content = fs_1.readFileSync(src, 'utf8');
+        var view = this.engine.renderViewAsText(content, context);
+        return view;
     };
     return View;
 }());

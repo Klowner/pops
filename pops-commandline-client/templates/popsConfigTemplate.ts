@@ -1,10 +1,12 @@
 export const popsConfigTemplate: Function = (): string => `
+var path = require('path')
+
 module.exports = {
-  src: 'styleguide',
-  ext: {
-    styles: 'scss',
-    templates: 'html',
-    scripts: 'js'
-  }
+    src: path.join(__dirname, './styleguide'),
+    ext: {
+        styles: 'scss',
+        templates: 'twig',
+        scripts: 'js'
+    }
 }
 `

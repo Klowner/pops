@@ -4,7 +4,7 @@
           <h1 class="pops-card__title">{{ component.name }}</h1>
         </a>
 
-        <div>{{{ component.template }}}</div>
+        <iframe v-bind:src=`/components/${component.name}` frameborder="0"></iframe>
 
         <tab-set :active="0">
             <tab header="Overview">

@@ -1,2 +1,2 @@
 "use strict";
-exports.popsConfigTemplate = function () { return "\nmodule.exports = {\n  src: 'styleguide',\n  ext: {\n    styles: 'scss',\n    templates: 'html',\n    scripts: 'js'\n  }\n}\n"; };
+exports.popsConfigTemplate = function () { return "\nvar path = require('path')\n\nmodule.exports = {\n    src: path.join(__dirname, './styleguide'),\n    ext: {\n        styles: 'scss',\n        templates: 'twig',\n        scripts: 'js'\n    }\n}\n"; };

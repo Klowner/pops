@@ -2,7 +2,7 @@
     <article class="pops-card pops-card--pattern" id="{{pattern.name}}">
         <a :href="url" class="pops-card__link"><h1 class="pops-card__title">{{ pattern.name }}</h1></a>
 
-        <div>{{{ pattern.template }}}</div>
+        <div>{{{ pattern.view }}}</div>
 
         <tab-set :active="0">
             <tab header="Overview">

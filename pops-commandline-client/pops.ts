@@ -18,10 +18,10 @@ if (command) {
     } else {
         switch (command) {
             case 'watch':
-                new Server(settings.src).watch()
+                new Server(settings).watch()
                 break
             case 'serve':
-                new Server(settings.src)
+                new Server(settings)
                 break
             case 'make::page':
                 Make.page(args, settings)
