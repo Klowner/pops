@@ -1,15 +1,25 @@
 "use strict";
+var view_1 = require('./view');
 var stores_1 = require('./stores');
+var view = new view_1.View();
 var Data = (function () {
     function Data() {
     }
     Data.pages = function (src) {
         var store = new stores_1.PageStore(src);
-        return store.all();
+        var pages = store.all();
+        return pages
+            .map(function (page) { return view.addView(page); });
     };
     Data.patterns = function (src) {
         var store = new stores_1.PatternStore(src);
-        return store.all();
+        var patterns = store.all();
+        return patterns
+            .map(function (pattern) {
+            view.registerPartial('pattern', pattern.name, pattern.template);
+            return pattern;
+        })
+            .map(function (pattern) { return view.addView(pattern); });
     };
     Data.overviews = function (src) {
         var store = new stores_1.OverviewStore(src);
@@ -17,15 +27,20 @@ var Data = (function () {
     };
     Data.components = function (src) {
         var store = new stores_1.ComponentStore(src);
-        return store.all();
+        var components = store.all();
+        return components
+            .map(function (component) {
+            view.registerPartial('component', component.name, component.template);
+            return component;
+        })
+            .map(function (component) { return view.addView(component); });
     };
     Data.all = function (src) {
-        return {
-            overviews: Data.overviews(src),
-            components: Data.components(src),
-            patterns: Data.patterns(src),
-            pages: Data.pages(src)
-        };
+        var patterns = Data.patterns(src);
+        var components = Data.components(src);
+        var pages = Data.pages(src);
+        var overviews = Data.overviews(src);
+        return { overviews: overviews, components: components, patterns: patterns, pages: pages };
     };
     return Data;
 }());

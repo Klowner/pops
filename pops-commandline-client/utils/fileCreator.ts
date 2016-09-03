@@ -14,7 +14,6 @@ function updateImport(dir: string, type: string, name: string, ext: string): voi
     }
 
     if (fs.existsSync(file)) {
-        console.log(importStatement)
         fs.appendFileSync(file, importStatement)
     } else {
         fs.writeFileSync(file, importStatement)

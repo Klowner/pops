@@ -13,7 +13,6 @@ function updateImport(dir, type, name, ext) {
         importStatement = "\nmodule.exports." + name.replace(' ', '-') + " = require('" + name + "/scripts/" + name + "." + ext + "');";
     }
     if (fs.existsSync(file)) {
-        console.log(importStatement);
         fs.appendFileSync(file, importStatement);
     }
     else {
