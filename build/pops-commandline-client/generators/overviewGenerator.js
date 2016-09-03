@@ -8,7 +8,7 @@ var OverviewGenerator = (function () {
         this.generate();
     }
     OverviewGenerator.prototype.generate = function () {
-        var dir = path.join(process.cwd(), this.config.src, 'overviews');
+        var dir = path.join(this.config.src, 'overviews');
         this.args.map(function (overview) {
             var folder = path.join(dir, overview);
             var files = [

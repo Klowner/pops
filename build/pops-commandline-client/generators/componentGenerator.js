@@ -10,7 +10,7 @@ var ComponentGenerator = (function () {
     }
     ComponentGenerator.prototype.generate = function () {
         var _this = this;
-        var dir = path.join(process.cwd(), this.config.src, 'components');
+        var dir = path.join(this.config.src, 'components');
         this.args.map(function (component) {
             var folder = path.join(dir, component);
             var files = [

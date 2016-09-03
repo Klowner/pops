@@ -15,10 +15,6 @@ var Data = (function () {
         var store = new stores_1.PatternStore(src);
         var patterns = store.all();
         return patterns
-            .map(function (pattern) {
-            view.registerPartial('pattern', pattern.name, pattern.template);
-            return pattern;
-        })
             .map(function (pattern) { return view.addView(pattern); });
     };
     Data.overviews = function (src) {
@@ -29,10 +25,6 @@ var Data = (function () {
         var store = new stores_1.ComponentStore(src);
         var components = store.all();
         return components
-            .map(function (component) {
-            view.registerPartial('component', component.name, component.template);
-            return component;
-        })
             .map(function (component) { return view.addView(component); });
     };
     Data.all = function (src) {

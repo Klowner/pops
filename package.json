@@ -28,6 +28,7 @@
     "json-server": "^0.8.17",
     "mkdirp": "^0.5.1",
     "socket.io": "^1.4.8",
+    "twig": "^0.9.5",
     "vue": "^1.0.0",
     "vue-resource": "^0.9.3",
     "yargs": "^4.8.1"

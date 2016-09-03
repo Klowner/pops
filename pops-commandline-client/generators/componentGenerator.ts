@@ -15,7 +15,7 @@ export class ComponentGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(process.cwd(), this.config.src, 'components')
+        let dir: string = path.join(this.config.src, 'components')
 
         this.args.map((component: string) => {
             let folder: string = path.join(dir, component)

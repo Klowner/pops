@@ -15,7 +15,7 @@ export class PageGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(process.cwd(), this.config.src, 'pages')
+        let dir: string = path.join(this.config.src, 'pages')
 
         this.args.map((page: string) => {
             let folder: string = path.join(dir, page)

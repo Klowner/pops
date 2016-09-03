@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 "use strict";
-var path = require('path');
 var chalk = require('chalk');
 var yargs = require('yargs');
 var make_1 = require('./make');
@@ -10,12 +9,6 @@ var config = new config_1.Config();
 var settings = require(config.getConfig());
 var input = yargs.argv._;
 var command = input[0], args = input.slice(1);
-function root() {
-    var configPath = config.getConfig();
-    var basename = path.basename(configPath);
-    var folder = configPath.replace(basename, '');
-    return path.join(folder, settings.src);
-}
 if (command) {
     if (command === 'init') {
         require('./init');
@@ -23,10 +16,10 @@ if (command) {
     else {
         switch (command) {
             case 'watch':
-                new server_1.Server(root()).watch();
+                new server_1.Server(settings.src).watch();
                 break;
             case 'serve':
-                new server_1.Server(root());
+                new server_1.Server(settings.src);
                 break;
             case 'make::page':
                 make_1.Make.page(args, settings);

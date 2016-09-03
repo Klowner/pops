@@ -10,7 +10,7 @@ var PatternGenerator = (function () {
     }
     PatternGenerator.prototype.generate = function () {
         var _this = this;
-        var dir = path.join(process.cwd(), this.config.src, 'patterns');
+        var dir = path.join(this.config.src, 'patterns');
         this.args.map(function (pattern) {
             var folder = path.join(dir, pattern);
             var files = [

@@ -10,7 +10,7 @@ var PageGenerator = (function () {
     }
     PageGenerator.prototype.generate = function () {
         var _this = this;
-        var dir = path.join(process.cwd(), this.config.src, 'pages');
+        var dir = path.join(this.config.src, 'pages');
         this.args.map(function (page) {
             var folder = path.join(dir, page);
             var files = [

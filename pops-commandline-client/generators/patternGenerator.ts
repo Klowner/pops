@@ -15,7 +15,7 @@ export class PatternGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(process.cwd(), this.config.src, 'patterns')
+        let dir: string = path.join(this.config.src, 'patterns')
 
         this.args.map((pattern: string) => {
             let folder: string = path.join(dir, pattern)

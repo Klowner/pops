@@ -14,7 +14,7 @@ export class OverviewGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(process.cwd(), this.config.src, 'overviews')
+        let dir: string = path.join(this.config.src, 'overviews')
 
         this.args.map((overview: string) => {
             let folder: string = path.join(dir, overview)

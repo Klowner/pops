@@ -1,8 +1,10 @@
+var path = require('path')
+
 module.exports = {
-    src: './styleguide',
+    src: path.join(__dirname, './styleguide'),
     ext: {
         styles: 'scss',
-        templates: 'html',
+        templates: 'twig',
         scripts: 'js'
     }
 }

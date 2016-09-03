@@ -12,24 +12,16 @@ let settings: any = require(config.getConfig())
 let input: string[] = yargs.argv._
 let [command, ...args] = input
 
-function root(): string {
-    let configPath: string = config.getConfig()
-    let basename: string = path.basename(configPath)
-    let folder: string = configPath.replace(basename, '')
-
-    return path.join(folder, settings.src)
-}
-
 if (command) {
     if (command === 'init') {
         require('./init')
     } else {
         switch (command) {
             case 'watch':
-                new Server(root()).watch()
+                new Server(settings.src).watch()
                 break
             case 'serve':
-                new Server(root())
+                new Server(settings.src)
                 break
             case 'make::page':
                 Make.page(args, settings)

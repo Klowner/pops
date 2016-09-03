@@ -18,11 +18,11 @@ export class Data {
         let patterns: PatternStruct[] = store.all()
 
         return patterns
-            .map((pattern) => {
-                view.registerPartial('pattern', pattern.name, pattern.template)
+            // .map((pattern) => {
+            //     view.registerPartial('pattern', pattern.name, pattern.template)
 
-                return pattern
-            })
+            //     return pattern
+            // })
             .map((pattern) => view.addView(pattern))
     }
 
@@ -37,11 +37,11 @@ export class Data {
         let components: ComponentStruct[] = store.all()
 
         return components
-            .map((component) => {
-                view.registerPartial('component', component.name, component.template)
+            // .map((component) => {
+            //     view.registerPartial('component', component.name, component.template)
 
-                return component
-            })
+            //     return component
+            // })
             .map((component) => view.addView(component))
     }
 
