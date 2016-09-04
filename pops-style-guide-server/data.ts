@@ -9,21 +9,23 @@ export class Data {
         let store: PageStore = new PageStore(src)
         let pages: PageStruct[] = store.all()
 
-        return pages
-            .map((page) => view.addView(page))
+        return pages.map((page) => view.addView(page))
     }
 
     static patterns(src: string): PatternStruct[] {
         let store: PatternStore = new PatternStore(src)
         let patterns: PatternStruct[] = store.all()
 
-        return patterns
-            // .map((pattern) => {
-            //     view.registerPartial('pattern', pattern.name, pattern.template)
+        if (view.preRenderPartials()) {
+            patterns = patterns
+                .map((pattern) => {
+                    view.registerPartial('pattern', pattern.name, pattern.template)
 
-            //     return pattern
-            // })
-            .map((pattern) => view.addView(pattern))
+                    return pattern
+                })
+        }
+
+        return patterns.map((pattern) => view.addView(pattern))
     }
 
     static overviews(src: string): OverviewStruct[] {
@@ -36,13 +38,16 @@ export class Data {
         let store: ComponentStore = new ComponentStore(src)
         let components: ComponentStruct[] = store.all()
 
-        return components
-            // .map((component) => {
-            //     view.registerPartial('component', component.name, component.template)
+        if (view.preRenderPartials()) {
+            components = components
+                .map((component) => {
+                    view.registerPartial('component', component.name, component.template)
 
-            //     return component
-            // })
-            .map((component) => view.addView(component))
+                    return component
+                })
+        }
+
+        return components.map((component) => view.addView(component))
     }
 
     static all(src: string): any {

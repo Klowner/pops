@@ -1,8 +1,8 @@
 <template>
     <article class="pops-card pops-card--pattern" id="{{pattern.name}}">
-        <a :href="url" class="pops-card__link"><h1 class="pops-card__title">{{ pattern.name }}</h1></a>
+        <a :href=`/patterns/${pattern.name}` class="pops-card__link"><h1 class="pops-card__title">{{ pattern.name }}</h1></a>
 
-        <div>{{{ pattern.view }}}</div>
+        <iframe class="pops-card__iframe" :src=`/patterns/${pattern.name}` frameborder="0"></iframe>
 
         <tab-set :active="0">
             <tab header="Overview">

@@ -1,9 +1,10 @@
 <template>
     <article class="pops-card pops-card--page" id="{{page.name}}">
-        <a :href="url" class="pops-card__link">
+        <a :href=`/pages/${page.name}` class="pops-card__link">
           <h1 class="pops-card__title">{{ page.name }}</h1>
         </a>
-        <div>{{{ page.view }}}</div>
+        
+        <iframe class="pops-card__iframe" :src=`/pages/${page.name}` frameborder="0"></iframe>
     </article>
 </template>
 

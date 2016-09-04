@@ -8,14 +8,19 @@ var Data = (function () {
     Data.pages = function (src) {
         var store = new stores_1.PageStore(src);
         var pages = store.all();
-        return pages
-            .map(function (page) { return view.addView(page); });
+        return pages.map(function (page) { return view.addView(page); });
     };
     Data.patterns = function (src) {
         var store = new stores_1.PatternStore(src);
         var patterns = store.all();
-        return patterns
-            .map(function (pattern) { return view.addView(pattern); });
+        if (view.preRenderPartials()) {
+            patterns = patterns
+                .map(function (pattern) {
+                view.registerPartial('pattern', pattern.name, pattern.template);
+                return pattern;
+            });
+        }
+        return patterns.map(function (pattern) { return view.addView(pattern); });
     };
     Data.overviews = function (src) {
         var store = new stores_1.OverviewStore(src);
@@ -24,8 +29,14 @@ var Data = (function () {
     Data.components = function (src) {
         var store = new stores_1.ComponentStore(src);
         var components = store.all();
-        return components
-            .map(function (component) { return view.addView(component); });
+        if (view.preRenderPartials()) {
+            components = components
+                .map(function (component) {
+                view.registerPartial('component', component.name, component.template);
+                return component;
+            });
+        }
+        return components.map(function (component) { return view.addView(component); });
     };
     Data.all = function (src) {
         var patterns = Data.patterns(src);

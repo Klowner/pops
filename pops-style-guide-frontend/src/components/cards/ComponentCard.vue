@@ -1,10 +1,10 @@
 <template>
     <article class="pops-card pops-card--component" id="{{component.name}}">
-        <a :href="url" class="pops-card__link">
+        <a :href=`/components/${component.name}` class="pops-card__link">
           <h1 class="pops-card__title">{{ component.name }}</h1>
         </a>
 
-        <iframe v-bind:src=`/components/${component.name}` frameborder="0"></iframe>
+        <iframe class="pops-card__iframe" :src=`/components/${component.name}` frameborder="0"></iframe>
 
         <tab-set :active="0">
             <tab header="Overview">
