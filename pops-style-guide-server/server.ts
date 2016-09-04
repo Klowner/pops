@@ -43,13 +43,8 @@ export class Server {
             let type = req.params.type
             let name = req.params.name
             let item = this.db[type].find(x => x.name === name)
-
             let demoFile = path.join(__dirname, '../..', 'pops-style-guide-frontend/demo.html')
-            let data = {
-                item: item,
-                globals: this.globals
-            }
-
+            let data = { item: item, globals: this.globals }
             let view = this.view.asText(demoFile, data)
 
             res.send(view)
@@ -103,5 +98,4 @@ export class Server {
                 watcher.eventLog('Changed', filePath)
             })
     }
-
 }

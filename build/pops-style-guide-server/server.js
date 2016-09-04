@@ -31,10 +31,7 @@ var Server = (function () {
             var name = req.params.name;
             var item = _this.db[type].find(function (x) { return x.name === name; });
             var demoFile = path.join(__dirname, '../..', 'pops-style-guide-frontend/demo.html');
-            var data = {
-                item: item,
-                globals: _this.globals
-            };
+            var data = { item: item, globals: _this.globals };
             var view = _this.view.asText(demoFile, data);
             res.send(view);
         });
