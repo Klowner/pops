@@ -7,9 +7,9 @@ module.exports = {
     doc: path.join(__dirname, 'README.md'),
     style: path.join(__dirname, 'styles/${name}.${ext.styles}'),
     script: path.join(__dirname, 'scripts/${name}.${ext.scripts}'),
-    template: path.join(__dirname, '${name}.${ext.templates}')
-  },
-  context: {}
+    template: path.join(__dirname, '${name}.${ext.templates}'),
+    context: path.join(__dirname, 'context.json')
+  }
 };
 
 `

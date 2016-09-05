@@ -26,6 +26,9 @@ export class PageGenerator {
                 }, {
                     path: `${folder}/index.js`,
                     content: indexTemplate(page, this.config.ext)
+                }, {
+                    path: `${folder}/context.json`,
+                    content: '{}'
                 }
             ]
 

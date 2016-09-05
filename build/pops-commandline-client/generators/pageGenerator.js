@@ -20,6 +20,9 @@ var PageGenerator = (function () {
                 }, {
                     path: folder + "/index.js",
                     content: indexTemplate_1.indexTemplate(page, _this.config.ext)
+                }, {
+                    path: folder + "/context.json",
+                    content: '{}'
                 }
             ];
             fileCreator_1.fileCreator(dir, 'page', page, files);

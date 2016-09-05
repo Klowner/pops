@@ -4,9 +4,9 @@ var path = require('path');
 module.exports = {
   name: '${name}',
   paths: {
-    template: path.join(__dirname, '${name}.${ext.templates}')
-  },
-  context: {}
+    template: path.join(__dirname, '${name}.${ext.templates}'),
+    context: path.join(__dirname, 'context.json')
+  }
 };
 
 `

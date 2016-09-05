@@ -29,6 +29,9 @@ var PatternGenerator = (function () {
                 }, {
                     path: folder + "/index.js",
                     content: indexTemplate_1.indexTemplate(pattern, _this.config.ext)
+                }, {
+                    path: folder + "/context.json",
+                    content: '{}'
                 }
             ];
             fileCreator_1.fileCreator(dir, 'pattern', pattern, files);

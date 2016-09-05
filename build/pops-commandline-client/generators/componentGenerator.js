@@ -29,6 +29,9 @@ var ComponentGenerator = (function () {
                 }, {
                     path: folder + "/index.js",
                     content: indexTemplate_1.indexTemplate(component, _this.config.ext)
+                }, {
+                    path: folder + "/context.json",
+                    content: '{}'
                 }
             ];
             fileCreator_1.fileCreator(dir, 'component', component, files);

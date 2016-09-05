@@ -10,8 +10,10 @@
     <script>
         var socket = io();
 
-        socket.on('change', function() {
-            location.reload();
+        socket.on('change', function(data) {
+            if(document.title === data.name) {
+                location.reload();
+            }
         });
     </script>
 </head>

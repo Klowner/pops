@@ -35,6 +35,9 @@ export class ComponentGenerator {
                 }, {
                     path: `${folder}/index.js`,
                     content: indexTemplate(component, this.config.ext)
+                }, {
+                    path: `${folder}/context.json`,
+                    content: '{}'
                 }
             ]
 

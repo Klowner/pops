@@ -12,6 +12,7 @@ export interface ComponentStruct {
         style: string
         script: string
         template: string
+        context: string
     }
 
 }

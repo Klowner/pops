@@ -35,6 +35,9 @@ export class PatternGenerator {
                 }, {
                     path: `${folder}/index.js`,
                     content: indexTemplate(pattern, this.config.ext)
+                }, {
+                    path: `${folder}/context.json`,
+                    content: '{}'
                 }
             ]
 

@@ -20,7 +20,12 @@ var ComponentStore = (function () {
                 if (fs.existsSync(index)) {
                     var data = require(index);
                     for (var key in data.paths) {
-                        data[key] = fs.readFileSync(data.paths[key], 'utf8');
+                        if (key === 'context') {
+                            data[key] = JSON.parse(fs.readFileSync(data.paths[key], 'utf8'));
+                        }
+                        else {
+                            data[key] = fs.readFileSync(data.paths[key], 'utf8');
+                        }
                     }
                     _this.components.push(data);
                 }

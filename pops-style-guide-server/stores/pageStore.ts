@@ -29,7 +29,11 @@ export class PageStore implements Store {
                         let data = require(index)
 
                         for(let key in data.paths) {
-                            data[key] = fs.readFileSync(data.paths[key], 'utf8')
+                            if (key === 'context') {
+                                data[key] = JSON.parse(fs.readFileSync(data.paths[key], 'utf8'))
+                            } else {
+                                data[key] = fs.readFileSync(data.paths[key], 'utf8')
+                            }
                         }
 
                         this.pages.push(data)

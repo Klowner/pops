@@ -27,11 +27,15 @@ export class PatternStore implements Store {
 
                     if (fs.existsSync(index)) {
                         let data = require(index)
-                        
-                        for(let key in data.paths) {
-                            data[key] = fs.readFileSync(data.paths[key], 'utf8')
+
+                        for (let key in data.paths) {
+                            if (key === 'context') {
+                                data[key] = JSON.parse(fs.readFileSync(data.paths[key], 'utf8'))
+                            } else {
+                                data[key] = fs.readFileSync(data.paths[key], 'utf8')
+                            }
                         }
-                        
+
                         this.patterns.push(data)
                     }
                 })

@@ -12,6 +12,7 @@ export interface PatternStruct {
         style: string
         script: string
         template: string
+        context: string
     }
 
 }

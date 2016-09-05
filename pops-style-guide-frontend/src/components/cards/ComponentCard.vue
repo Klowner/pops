@@ -35,6 +35,7 @@
         props: ['component'],
         created() {
             socket.on('change', (data) => {
+                console.log(data)
                 let newComponent = data.components.find((x) => x.name === this.component.name)
 
                 this.component = newComponent
