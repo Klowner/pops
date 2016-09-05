@@ -13,7 +13,8 @@ var Server = (function () {
         this.view = new view_1.View('hbs');
         this.settings = settings;
         this.root = this.settings.src;
-        this.db = data_1.Data.all(this.root);
+        this.data = new data_1.Data();
+        this.db = this.data.all(this.root);
         this.globals = settings.globals;
         this.setup();
         this.start();
@@ -38,10 +39,10 @@ var Server = (function () {
         this.io.on('connection', function (socket) { });
     };
     Server.prototype.eventEmit = function (event, name) {
-        var data = {};
-        data.name = name;
-        data[event] = data_1.Data[event](this.root);
-        this.io.emit(event, data);
+        var data = new data_1.Data(this.settings.ext.template);
+        var viewData = this.data.all(this.root);
+        viewData.name = name;
+        this.io.emit(event, viewData);
     };
     Server.prototype.start = function () {
         var port = process.env.PORT || 9095;
@@ -60,25 +61,12 @@ var Server = (function () {
         var watcher = new watch_1.Watch(dirsToWatch);
         watcher.getWatcher()
             .on('change', function (filePath) {
-            var event;
             var name = path.basename(filePath).split('.').slice(0, -1).join('');
             var splitPath = filePath.split('/');
-            if (filePath.indexOf('components')) {
-                event = 'components';
-            }
-            else if (filePath.indexOf('patterns')) {
-                event = 'patterns';
-            }
-            else if (filePath.indexOf('pages')) {
-                event = 'pages';
-            }
-            else if (filePath.indexOf('overviews')) {
-                event = 'overviews';
-            }
             if (name === 'README') {
                 name = filePath.split('/').slice(-2)[0];
             }
-            _this.eventEmit(event, name);
+            _this.eventEmit('change', name);
             watcher.eventLog('Changed', filePath);
         });
     };

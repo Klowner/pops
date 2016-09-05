@@ -31,12 +31,11 @@
         },
         props: ['pattern'],
         created() {
-            socket.on('patterns', (data) => {
-                if (data.name === this.pattern.name) {
-                    let newPattern = data.patterns.find((x) => x.name === this.pattern.name)
+            socket.on('change', (data) => {
+                console.log(data)
+                let newPattern = data.patterns.find((x) => x.name === this.pattern.name)
 
-                    this.pattern = newPattern
-                }
+                this.pattern = newPattern
             })
         }
     }

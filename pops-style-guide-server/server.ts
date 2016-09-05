@@ -10,6 +10,7 @@ import {View} from './view'
 export class Server {
     private db: any
     private root: string
+    private data: Data
     private settings: any
     private globals: any
     private view: View
@@ -21,7 +22,8 @@ export class Server {
         this.view = new View('hbs')
         this.settings = settings
         this.root = this.settings.src
-        this.db = Data.all(this.root)
+        this.data = new Data()
+        this.db = this.data.all(this.root)
         this.globals = settings.globals
 
         this.setup()
@@ -54,11 +56,11 @@ export class Server {
     }
 
     private eventEmit(event: string, name: string): void {
-        let data: any = {}
-        data.name = name
-        data[event] = Data[event](this.root)
+        let data: Data = new Data(this.settings.ext.template)
+        let viewData: any = this.data.all(this.root)
+        viewData.name = name
 
-        this.io.emit(event, data)
+        this.io.emit(event, viewData)
     }
 
     private start(): void {
@@ -80,20 +82,14 @@ export class Server {
 
         watcher.getWatcher()
             .on('change', (filePath: string) => {
-                let event: string
                 let name: string = path.basename(filePath).split('.').slice(0, -1).join('')
                 let splitPath: string[] = filePath.split('/')
-
-                if (filePath.indexOf('components')) { event = 'components' }
-                else if (filePath.indexOf('patterns')) { event = 'patterns' }
-                else if (filePath.indexOf('pages')) { event = 'pages' }
-                else if (filePath.indexOf('overviews')) { event = 'overviews' }
 
                 if (name === 'README') {
                     name = filePath.split('/').slice(-2)[0]
                 }
 
-                this.eventEmit(event, name)
+                this.eventEmit('change', name)
 
                 watcher.eventLog('Changed', filePath)
             })

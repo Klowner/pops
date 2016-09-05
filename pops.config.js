@@ -4,10 +4,10 @@ module.exports = {
     src: path.join(__dirname, './styleguide'),
     globals: {
         stylesheets: [
-            'test'
+            // Include stylesheets
         ],
         javascripts: [
-            'test'
+            // Include javascripts
         ]
     },
     ext: {

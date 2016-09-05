@@ -34,12 +34,10 @@
         },
         props: ['component'],
         created() {
-            socket.on('components', (data) => {
-                if (data.name === this.component.name) {
-                    let newComponent = data.components.find((x) => x.name === this.component.name)
+            socket.on('change', (data) => {
+                let newComponent = data.components.find((x) => x.name === this.component.name)
 
-                    this.component = newComponent
-                }
+                this.component = newComponent
             })
         }
     }

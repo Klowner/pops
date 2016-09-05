@@ -12,13 +12,10 @@
     export default {
         props: ['page'],
         created() {
-            socket.on('pages', (data) => {
-              console.log(data)
-                if (data.name === this.page.name) {
-                    let newPage = data.pages.find((x) => x.name === this.page.name)
+            socket.on('change', (data) => {
+                let newPage = data.pages.find((x) => x.name === this.page.name)
 
-                    this.page = newPage
-                }
+                this.page = newPage
             })
         }
     }

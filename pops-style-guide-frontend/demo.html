@@ -6,6 +6,14 @@
         <link rel="stylesheet" href="{{this}}">
     {{/each}}
     <title>{{ item.name }}</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        socket.on('change', function() {
+            location.reload();
+        });
+    </script>
 </head>
 <body>
 

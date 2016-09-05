@@ -11,12 +11,11 @@
     export default {
         props: ['overview'],
         created() {
-            socket.on('overviews', (data) => {
-                if (data.name === this.overview.name) {
-                    let newOverview = data.overviews.find((x) => x.name === this.overview.name)
+            socket.on('change', (data) => {
+                console.log(data)
+                let newOverview = data.overviews.find((x) => x.name === this.overview.name)
 
-                    this.overview = newOverview
-                }
+                this.overview = newOverview
             })
         }
     }

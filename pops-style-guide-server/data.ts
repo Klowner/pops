@@ -2,59 +2,63 @@ import {View} from './view'
 import {PageStore, PatternStore, OverviewStore, ComponentStore} from './stores'
 import {PageStruct, PatternStruct, OverviewStruct, ComponentStruct} from './structs'
 
-let view: View = new View()
-
 export class Data {
-    static pages(src: string): PageStruct[] {
+    private view: View
+
+    constructor(ext: string = '') {
+        this.view = new View(ext)
+    }
+
+    public pages(src: string): PageStruct[] {
         let store: PageStore = new PageStore(src)
         let pages: PageStruct[] = store.all()
 
-        return pages.map((page) => view.addView(page))
+        return pages.map((page) => this.view.addView(page))
     }
 
-    static patterns(src: string): PatternStruct[] {
+    public patterns(src: string): PatternStruct[] {
         let store: PatternStore = new PatternStore(src)
         let patterns: PatternStruct[] = store.all()
 
-        if (view.preRenderPartials()) {
+        if (this.view.preRenderPartials()) {
             patterns = patterns
                 .map((pattern) => {
-                    view.registerPartial('pattern', pattern.name, pattern.template)
+                    this.view.registerPartial('pattern', pattern.name, pattern.template)
 
                     return pattern
                 })
         }
 
-        return patterns.map((pattern) => view.addView(pattern))
+        return patterns.map((pattern) => this.view.addView(pattern))
     }
 
-    static overviews(src: string): OverviewStruct[] {
+    public overviews(src: string): OverviewStruct[] {
         let store: OverviewStore = new OverviewStore(src)
 
         return store.all()
     }
 
-    static components(src: string): ComponentStruct[] {
+    public components(src: string): ComponentStruct[] {
         let store: ComponentStore = new ComponentStore(src)
         let components: ComponentStruct[] = store.all()
 
-        if (view.preRenderPartials()) {
+        if (this.view.preRenderPartials()) {
             components = components
                 .map((component) => {
-                    view.registerPartial('component', component.name, component.template)
+                    this.view.registerPartial('component', component.name, component.template)
 
                     return component
                 })
         }
 
-        return components.map((component) => view.addView(component))
+        return components.map((component) => this.view.addView(component))
     }
 
-    static all(src: string): any {
-        let patterns = Data.patterns(src)
-        let components = Data.components(src)
-        let pages = Data.pages(src)
-        let overviews = Data.overviews(src)
+    public all(src: string): any {
+        let patterns = this.patterns(src)
+        let components = this.components(src)
+        let pages = this.pages(src)
+        let overviews = this.overviews(src)
 
         return { overviews, components, patterns, pages }
     }
