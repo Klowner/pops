@@ -3,6 +3,27 @@
 A commandline client that is capable of generating styleguides, and styleguide
 based workflows.
 
+## Dev Set Up
+
+You should have the latest node and typescript versions installed.
+
+    $ npm install
+    $ typings install
+
+    // Build Typescript (Cli, and Server)
+    $ tsc
+
+    // Build Vue App
+    $ webpack
+
+    // Running in dev
+    $ node build/pops-commandline-client/pops.js
+    // EG: make a component
+    $ node build/pops-commandline-client/pops.js make::component test
+
+NB: As this is in dev certain exceptions have been made. For example an example
+styleguide folder is in the repo. This will be removed when ready for external use.
+
 ## Installation
 
 Install globally for best use.
@@ -34,3 +55,9 @@ Once installed you will have access to the pops commandline-client.
 
 
 ## Contributing
+
+Keep code in the same style:
+
+    1. 4 spaces indent
+    2. No semi-colons
+    3. Do not use `const`

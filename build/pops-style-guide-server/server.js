@@ -63,7 +63,7 @@ var Server = (function () {
             .on('change', function (filePath) {
             var name = path.basename(filePath).split('.').slice(0, -1).join('');
             var splitPath = filePath.split('/');
-            if (name === 'README') {
+            if (name === 'README' || name === 'context') {
                 name = filePath.split('/').slice(-2)[0];
             }
             _this.eventEmit('change', name);

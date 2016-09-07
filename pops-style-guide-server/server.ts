@@ -85,7 +85,7 @@ export class Server {
                 let name: string = path.basename(filePath).split('.').slice(0, -1).join('')
                 let splitPath: string[] = filePath.split('/')
 
-                if (name === 'README') {
+                if (name === 'README' || name === 'context') {
                     name = filePath.split('/').slice(-2)[0]
                 }
 
