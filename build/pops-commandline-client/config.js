@@ -1,35 +1,17 @@
 "use strict";
 var fs = require('fs');
-var path = require('path');
-function home() {
-    if (process.platform == 'win32') {
-        return process.env['USERPROFILE'];
-    }
-    else {
-        return process.env['HOME'];
-    }
-}
+var path_1 = require('path');
 var Config = (function () {
     function Config() {
         this.dir = process.cwd();
-        this.config = '';
         this.configFileName = 'pops.config.js';
+        this.config = path_1.join(this.dir, this.configFileName);
     }
     Config.prototype.getConfig = function () {
-        this.searchForConfigFile();
         return this.config;
     };
-    Config.prototype.searchForConfigFile = function () {
-        while (this.dir !== home()) {
-            var dirHasConfig = fs.readdirSync(this.dir).indexOf(this.configFileName);
-            if (dirHasConfig) {
-                this.config = path.join(this.dir, this.configFileName);
-                break;
-            }
-            var pathSplit = this.dir.split('/');
-            var _a = pathSplit.reverse(), _ = _a[0], nextDir = _a.slice(1);
-            this.dir = nextDir.join('/');
-        }
+    Config.prototype.configExists = function () {
+        return fs.statSync(this.config).isFile();
     };
     return Config;
 }());

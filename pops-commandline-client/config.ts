@@ -1,38 +1,20 @@
 import * as fs from 'fs'
-import * as path from 'path'
-
-function home(): string {
-    if (process.platform == 'win32') {
-        return process.env['USERPROFILE']
-    } else {
-        return process.env['HOME']
-    }
-}
+import {join} from 'path'
 
 export class Config {
+    private config: string
     private dir: string = process.cwd()
-    private config: string = ''
     private configFileName: string = 'pops.config.js'
 
-    public getConfig() {
-        this.searchForConfigFile()
+    constructor() {
+        this.config = join(this.dir, this.configFileName)
+    }
+
+    public getConfig(): string {
         return this.config
     }
 
-    private searchForConfigFile() {
-        while (this.dir !== home()) {
-            let dirHasConfig = fs.readdirSync(this.dir).indexOf(this.configFileName)
-
-            if (dirHasConfig) {
-                this.config = path.join(this.dir, this.configFileName)
-
-                break
-            }
-
-            let pathSplit = this.dir.split('/')
-            let [_, ...nextDir] = pathSplit.reverse()
-
-            this.dir = nextDir.join('/')
-        }
+    public configExists(): boolean {
+        return fs.statSync(this.config).isFile()
     }
 }

@@ -4,18 +4,19 @@ import * as yargs from 'yargs'
 
 import {Make} from './make'
 import {Config} from './config'
-import {Server} from '../pops-style-guide-server/server'
 
 let config: Config = new Config()
-let configFile: string = config.getConfig()
-let settings: any = configFile ? false : require(configFile)
 let input: string[] = yargs.argv._
 let [command, ...args] = input
 
-if (command && settings) {
+if (command) {
     if (command === 'init') {
         require('./init')
-    } else {
+    } else if (config.configExists()) {
+        let configFile: string = config.getConfig()
+        let settings: any = require(configFile)
+        let {Server}: any = require('../pops-style-guide-server/server')
+
         switch (command) {
             case 'watch':
                 new Server(settings).watch()

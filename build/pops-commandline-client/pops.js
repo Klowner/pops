@@ -4,23 +4,23 @@ var chalk = require('chalk');
 var yargs = require('yargs');
 var make_1 = require('./make');
 var config_1 = require('./config');
-var server_1 = require('../pops-style-guide-server/server');
 var config = new config_1.Config();
-var configFile = config.getConfig();
-var settings = configFile ? false : require(configFile);
 var input = yargs.argv._;
 var command = input[0], args = input.slice(1);
-if (command && settings) {
+if (command) {
     if (command === 'init') {
         require('./init');
     }
-    else {
+    else if (config.configExists()) {
+        var configFile = config.getConfig();
+        var settings = require(configFile);
+        var Server = require('../pops-style-guide-server/server').Server;
         switch (command) {
             case 'watch':
-                new server_1.Server(settings).watch();
+                new Server(settings).watch();
                 break;
             case 'serve':
-                new server_1.Server(settings);
+                new Server(settings);
                 break;
             case 'make::page':
                 make_1.Make.page(args, settings);
