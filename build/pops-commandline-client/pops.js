@@ -6,10 +6,11 @@ var make_1 = require('./make');
 var config_1 = require('./config');
 var server_1 = require('../pops-style-guide-server/server');
 var config = new config_1.Config();
-var settings = require(config.getConfig());
+var configFile = config.getConfig();
+var settings = configFile ? false : require(configFile);
 var input = yargs.argv._;
 var command = input[0], args = input.slice(1);
-if (command) {
+if (command && settings) {
     if (command === 'init') {
         require('./init');
     }

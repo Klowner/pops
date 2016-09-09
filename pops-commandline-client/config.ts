@@ -24,9 +24,7 @@ export class Config {
             let dirHasConfig = fs.readdirSync(this.dir).indexOf(this.configFileName)
 
             if (dirHasConfig) {
-                let filePath = path.join(this.dir, this.configFileName)
-
-                this.config = filePath
+                this.config = path.join(this.dir, this.configFileName)
 
                 break
             }

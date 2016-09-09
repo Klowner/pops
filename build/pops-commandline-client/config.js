@@ -23,8 +23,7 @@ var Config = (function () {
         while (this.dir !== home()) {
             var dirHasConfig = fs.readdirSync(this.dir).indexOf(this.configFileName);
             if (dirHasConfig) {
-                var filePath = path.join(this.dir, this.configFileName);
-                this.config = filePath;
+                this.config = path.join(this.dir, this.configFileName);
                 break;
             }
             var pathSplit = this.dir.split('/');

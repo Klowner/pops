@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-import * as path from 'path'
 import * as chalk from 'chalk'
 import * as yargs from 'yargs'
 
@@ -8,11 +7,12 @@ import {Config} from './config'
 import {Server} from '../pops-style-guide-server/server'
 
 let config: Config = new Config()
-let settings: any = require(config.getConfig())
+let configFile: string = config.getConfig()
+let settings: any = configFile ? false : require(configFile)
 let input: string[] = yargs.argv._
 let [command, ...args] = input
 
-if (command) {
+if (command && settings) {
     if (command === 'init') {
         require('./init')
     } else {
