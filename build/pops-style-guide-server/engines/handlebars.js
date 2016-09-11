@@ -14,8 +14,7 @@ var Handlebars = (function () {
     };
     Handlebars.prototype.renderViewAsText = function (src, context) {
         var template = this.compile(src);
-        var html = template(context);
-        return html;
+        return template(context);
     };
     return Handlebars;
 }());

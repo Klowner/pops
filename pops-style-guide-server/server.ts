@@ -51,12 +51,9 @@ export class Server {
 
             res.send(view)
         })
-
-        this.io.on('connection', (socket) => { })
     }
 
     private eventEmit(event: string, name: string): void {
-        let data: Data = new Data(this.settings.ext.template)
         let viewData: any = this.data.all(this.root)
         viewData.name = name
 
@@ -83,7 +80,6 @@ export class Server {
         watcher.getWatcher()
             .on('change', (filePath: string) => {
                 let name: string = path.basename(filePath).split('.').slice(0, -1).join('')
-                let splitPath: string[] = filePath.split('/')
 
                 if (name === 'README' || name === 'context') {
                     name = filePath.split('/').slice(-2)[0]

@@ -1,11 +1,10 @@
-import {join} from 'path'
 import {readFileSync} from 'fs'
 
 import {Config} from '../pops-commandline-client/config'
 import {Twig} from './engines/twig'
 import {Handlebars} from './engines/handlebars'
 
-let config: any = require(new Config().getConfig())
+let config: any = new Config().getConfig()
 
 export class View {
     private engine: any
@@ -42,8 +41,7 @@ export class View {
 
     public asText(src: string, context: any): string {
         let content = readFileSync(src, 'utf8')
-        let view: string = this.engine.renderViewAsText(content, context)
 
-        return view
+        return this.engine.renderViewAsText(content, context)
     }
 }

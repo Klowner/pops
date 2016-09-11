@@ -18,8 +18,7 @@ export class Handlebars implements ViewEngine {
 
     public renderViewAsText(src: string, context: any): string {
         let template: HandlebarsTemplateDelegate = this.compile(src)
-        let html: string = template(context)
 
-        return html
+        return template(context)
     }
 }

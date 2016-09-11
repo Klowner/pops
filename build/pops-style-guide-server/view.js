@@ -3,7 +3,7 @@ var fs_1 = require('fs');
 var config_1 = require('../pops-commandline-client/config');
 var twig_1 = require('./engines/twig');
 var handlebars_1 = require('./engines/handlebars');
-var config = require(new config_1.Config().getConfig());
+var config = new config_1.Config().getConfig();
 var View = (function () {
     function View(ext) {
         if (ext === void 0) { ext = ''; }
@@ -31,8 +31,7 @@ var View = (function () {
     };
     View.prototype.asText = function (src, context) {
         var content = fs_1.readFileSync(src, 'utf8');
-        var view = this.engine.renderViewAsText(content, context);
-        return view;
+        return this.engine.renderViewAsText(content, context);
     };
     return View;
 }());

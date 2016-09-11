@@ -36,10 +36,8 @@ var Server = (function () {
             var view = _this.view.asText(demoFile, data);
             res.send(view);
         });
-        this.io.on('connection', function (socket) { });
     };
     Server.prototype.eventEmit = function (event, name) {
-        var data = new data_1.Data(this.settings.ext.template);
         var viewData = this.data.all(this.root);
         viewData.name = name;
         this.io.emit(event, viewData);
@@ -62,7 +60,6 @@ var Server = (function () {
         watcher.getWatcher()
             .on('change', function (filePath) {
             var name = path.basename(filePath).split('.').slice(0, -1).join('');
-            var splitPath = filePath.split('/');
             if (name === 'README' || name === 'context') {
                 name = filePath.split('/').slice(-2)[0];
             }

@@ -4,7 +4,7 @@ import * as twig from 'twig'
 import {ViewEngine} from './ViewEngine'
 import {Config} from '../../pops-commandline-client/config'
 
-let config: any = require(new Config().getConfig())
+let config: any = new Config().getConfig()
 let srcDir: string = config.src
 let patternDir: string = join(srcDir, 'patterns/')
 let componentDir: string = join(srcDir, 'components/')
@@ -14,7 +14,7 @@ export class Twig implements ViewEngine {
     preRenderedPartials: boolean = false
     options: any = {
         data: '',
-        namespaces: { 'patterns': patternDir, 'components': componentDir }
+        namespaces: {'patterns': patternDir, 'components': componentDir}
     }
 
     public renderViewAsText(src: string, context: any): string {

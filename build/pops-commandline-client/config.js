@@ -8,10 +8,19 @@ var Config = (function () {
         this.config = path_1.join(this.dir, this.configFileName);
     }
     Config.prototype.getConfig = function () {
-        return this.config;
+        var appConfig = {};
+        if (this.configExists()) {
+            appConfig = require(this.config);
+        }
+        return appConfig;
     };
     Config.prototype.configExists = function () {
-        return fs.statSync(this.config).isFile();
+        try {
+            return fs.statSync(this.config).isFile();
+        }
+        catch (e) {
+            return false;
+        }
     };
     return Config;
 }());

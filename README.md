@@ -3,27 +3,6 @@
 A commandline client that is capable of generating styleguides, and styleguide
 based workflows.
 
-## Dev Set Up
-
-You should have the latest node and typescript versions installed.
-
-    $ npm install
-    $ typings install
-
-    // Build Typescript (Cli, and Server)
-    $ tsc
-
-    // Build Vue App
-    $ webpack
-
-    // Running in dev
-    $ node build/pops-commandline-client/pops.js
-    // EG: make a component
-    $ node build/pops-commandline-client/pops.js make::component test
-
-NB: As this is in dev certain exceptions have been made. For example an example
-styleguide folder is in the repo. This will be removed when ready for external use.
-
 ## Installation
 
 Install globally for best use.
@@ -54,10 +33,61 @@ Once installed you will have access to the pops commandline-client.
         make::page       Creates one or multiple page/s
 
 
+## Config
+
+To start a pops styleguide you will first need a `pops.config.js` file.
+After installing pops run `$ pops init` to generate a `pops.config.js` in the current
+directory. It should look like the following.
+
+```javascript
+var path = require('path')
+
+module.exports = {
+    src: path.join(__dirname, './styleguide'),
+    globals: {
+        stylesheets: [
+            // Include stylesheets
+        ],
+        javascripts: [
+            // Include javascripts
+        ]
+    },
+    ext: {
+        styles: 'scss',
+        templates: 'twig',
+        scripts: 'js'
+    }
+}
+```
+
+### src
+
+The `src` option tells pops where it should place any generated items. It is also
+where pops will look when serving it's styleguide.
+
+### globals
+
+The `globals` option refers to global stylesheets and javascripts that are used by
+the styleguide items.
+
+### ext
+
+The `ext` option tells pops what file extension you wish to use. Pops will read this
+and create files using these intructions.
+
+Templates by default work in either handlebars or twig format.
+
 ## Contributing
 
-Keep code in the same style:
+Feel free to open an [issue](https://github.com/BrianDGLS/pops/issues) 
+or [pull request](https://github.com/BrianDGLS/pops/pulls).
 
-    1. 4 spaces indent
-    2. No semi-colons
-    3. Do not use `const`
+Pay special attention to issues mark with the `help wanted` label.
+
+Pull requests should be made against the develop branch.
+
+Please also make an attempt to keep your code style aligned with the code 
+which currently exists.
+
+You should also compile your typscript files and any frontend changes 
+before commiting.

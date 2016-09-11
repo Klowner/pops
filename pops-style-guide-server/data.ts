@@ -60,6 +60,6 @@ export class Data {
         let pages = this.pages(src)
         let overviews = this.overviews(src)
 
-        return { overviews, components, patterns, pages }
+        return {overviews, components, patterns, pages}
     }
 }

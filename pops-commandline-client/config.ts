@@ -10,11 +10,21 @@ export class Config {
         this.config = join(this.dir, this.configFileName)
     }
 
-    public getConfig(): string {
-        return this.config
+    public getConfig(): any {
+        let appConfig: any = {}
+
+        if (this.configExists()) {
+            appConfig = require(this.config)
+        }
+
+        return appConfig
     }
 
     public configExists(): boolean {
-        return fs.statSync(this.config).isFile()
+        try {
+            return fs.statSync(this.config).isFile()
+        } catch (e) {
+            return false
+        }
     }
 }
