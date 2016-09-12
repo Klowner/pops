@@ -33,13 +33,16 @@
             TabSet
         },
         props: ['component'],
+        methods: {
+            findComponent(components) {
+                return components.find((x) => x.name === this.component.name)
+            },
+            updateComponent(data) {
+                this.component = this.findComponent(data.components)
+            }
+        },
         created() {
-            socket.on('change', (data) => {
-                console.log(data)
-                let newComponent = data.components.find((x) => x.name === this.component.name)
-
-                this.component = newComponent
-            })
+            socket.on('change', this.updateComponent)
         }
     }
 </script>

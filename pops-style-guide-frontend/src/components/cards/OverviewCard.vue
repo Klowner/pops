@@ -10,13 +10,16 @@
 <script>
     export default {
         props: ['overview'],
+        methods: {
+            findOverview(overviews) {
+                return overviews.find((x) => x.name === this.overview.name)
+            },
+            updateOverview(data) {
+                this.overview = this.findOverview(data.overviews)
+            }
+        },
         created() {
-            socket.on('change', (data) => {
-                console.log(data)
-                let newOverview = data.overviews.find((x) => x.name === this.overview.name)
-
-                this.overview = newOverview
-            })
+            socket.on('change', this.updateOverview)
         }
     }
 </script>

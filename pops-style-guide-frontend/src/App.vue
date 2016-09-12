@@ -11,23 +11,28 @@
         components: {
             SideNav, MainList
         },
-        ready() {
-            this.$http.get('/api/db')
-                .then((response) => {
-                    let data = JSON.parse(response.body)
-                    let keys = Object.keys(data)
-                    let groups = keys.map((key) => {
-                        return { name: key, items: data[key] }
-                    })
+        methods: {
+            getGroups(data) {
+                let keys = Object.keys(data)
+                let filter = (key) => ({name: key, items: data[key]})
 
-                    this.db = data
-                    this.groups = groups
-                }, (response) => {
-                    console.log('Could not get /api/db')
-                })
+                return keys.map(filter)
+            },
+            requestSuccess(response) {
+                let data = JSON.parse(response.body)
+
+                this.db = data
+                this.groups = this.getGroups(data)
+            },
+            requestFailure() {
+                console.log('Could not get /api/db')
+            }
+        },
+        ready() {
+            this.$http.get('/api/db').then(this.requestSuccess, this.requestFailure)
         },
         data() {
-            return { db: {}, groups: [] }
+            return {db: {}, groups: []}
         }
     }
 </script>
