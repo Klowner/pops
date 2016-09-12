@@ -1,6 +1,6 @@
-import * as chalk from 'chalk'
+import {bold} from 'chalk'
 
-export const help = (function() {
+export default (function () {
     console.log(`
 ██████╗  ██████╗ ██████╗ ███████╗
 ██╔══██╗██╔═══██╗██╔══██╗██╔════╝
@@ -12,13 +12,13 @@ export const help = (function() {
 Usage: pops <command> [options]
 
 Commands:
-  ${chalk.bold('serve')}            Serves Pops' styleguide
-  ${chalk.bold('init')}             Creates a pops.config.js in the current folder
-  ${chalk.bold('watch')}            Serves Pops' styleguide and watches for changes
+  ${bold('serve')}            Serves Pops' styleguide
+  ${bold('init')}             Creates a pops.config.js in the current folder
+  ${bold('watch')}            Serves Pops' styleguide and watches for changes
   --------------------------------------------------------------------------
-  ${chalk.bold('make::component')}  Creates one or multiple component/s
-  ${chalk.bold('make::overview')}   Creates one or multiple overview/s
-  ${chalk.bold('make::pattern')}    Creates one or multiple pattern/s
-  ${chalk.bold('make::page')}       Creates one or multiple page/s
+  ${bold('make::component')}  Creates one or multiple component/s
+  ${bold('make::overview')}   Creates one or multiple overview/s
+  ${bold('make::pattern')}    Creates one or multiple pattern/s
+  ${bold('make::page')}       Creates one or multiple page/s
 `)
 }())

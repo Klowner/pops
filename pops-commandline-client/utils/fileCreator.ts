@@ -1,27 +1,12 @@
 import * as fs from 'fs'
-import * as path from 'path'
 import * as chalk from 'chalk'
 import * as mkdirp from 'mkdirp'
+import {join, basename} from 'path'
 
-function updateImport(dir: string, type: string, name: string, ext: string): void {
-    let importStatement: string = ''
-    let file: string = path.join(dir, `${type}.${ext}`)
-
-    if (ext === 'scss' || ext === 'less') {
-        importStatement = `\n@import '${name}/styles/${name}.${ext}';`
-    } else if (ext === 'js') {
-        importStatement = `\nmodule.exports.${name.replace(' ', '-')} = require('${name}/scripts/${name}.${ext}');`
-    }
-
-    if (fs.existsSync(file)) {
-        fs.appendFileSync(file, importStatement)
-    } else {
-        fs.writeFileSync(file, importStatement)
-    }
-}
+import {updateImport} from './updateImport'
 
 export function fileCreator(dir: string, type: string, name: string, files: any[]): void {
-    let target: string = path.join(dir, name)
+    let target: string = join(dir, name)
 
     if (fs.existsSync(target)) {
         let msg: string = `${chalk.red.bold('Error')}: The ${chalk.yellow(type)} ${chalk.cyan(name)} already exists at: ${chalk.red(target)}`
@@ -29,7 +14,7 @@ export function fileCreator(dir: string, type: string, name: string, files: any[
         console.error(msg)
     } else {
         files.map((file) => {
-            let fileName: string = path.basename(file.path)
+            let fileName: string = basename(file.path)
             let folder: string = file.path.replace(fileName, '')
 
             mkdirp.sync(folder, (err) => err ? console.error(err) : null)

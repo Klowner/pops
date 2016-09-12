@@ -1,11 +1,11 @@
 #! /usr/bin/env node
-import * as chalk from 'chalk'
-import * as yargs from 'yargs'
+import {red} from 'chalk'
+import {argv} from 'yargs'
 
 import {Make} from './make'
 import {Config} from './config'
 
-let input: string[] = yargs.argv._
+let input: string[] = argv._
 let [command, ...args] = input
 let config: Config = new Config()
 
@@ -36,7 +36,7 @@ function getCommand(cmd: string = ''): void {
         'make::component': () => Make.component(args, settings),
         'make::overview': () => Make.overview(args, settings),
         // if command is not recognised
-        'default': () => console.error(`Command ${chalk.red.bold(cmd)} not recognised`)
+        'default': () => console.error(`Command ${red.bold(cmd)} not recognised`)
     }
 
     if (commands[cmd]) {

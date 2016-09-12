@@ -1,5 +1,5 @@
 "use strict";
-var path = require('path');
+var path_1 = require('path');
 var fileCreator_1 = require('../utils/fileCreator');
 var OverviewGenerator = (function () {
     function OverviewGenerator(args, config) {
@@ -8,9 +8,9 @@ var OverviewGenerator = (function () {
         this.generate();
     }
     OverviewGenerator.prototype.generate = function () {
-        var dir = path.join(this.config.src, 'overviews');
+        var dir = path_1.join(this.config.src, 'overviews');
         this.args.map(function (overview) {
-            var folder = path.join(dir, overview);
+            var folder = path_1.join(dir, overview);
             var files = [
                 {
                     path: folder + "/" + overview + ".md",

@@ -1,4 +1,4 @@
-import * as path from 'path'
+import {join} from 'path'
 
 import {fileCreator} from '../utils/fileCreator'
 import {indexTemplate} from '../templates/components/indexTemplate'
@@ -15,10 +15,10 @@ export class ComponentGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(this.config.src, 'components')
+        let dir: string = join(this.config.src, 'components')
 
         this.args.map((component: string) => {
-            let folder: string = path.join(dir, component)
+            let folder: string = join(dir, component)
             let files: any[] = [
                 {
                     path: `${folder}/styles/${component}.${this.config.ext.styles}`,

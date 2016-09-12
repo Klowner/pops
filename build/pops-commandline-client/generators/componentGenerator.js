@@ -1,5 +1,5 @@
 "use strict";
-var path = require('path');
+var path_1 = require('path');
 var fileCreator_1 = require('../utils/fileCreator');
 var indexTemplate_1 = require('../templates/components/indexTemplate');
 var ComponentGenerator = (function () {
@@ -10,9 +10,9 @@ var ComponentGenerator = (function () {
     }
     ComponentGenerator.prototype.generate = function () {
         var _this = this;
-        var dir = path.join(this.config.src, 'components');
+        var dir = path_1.join(this.config.src, 'components');
         this.args.map(function (component) {
-            var folder = path.join(dir, component);
+            var folder = path_1.join(dir, component);
             var files = [
                 {
                     path: folder + "/styles/" + component + "." + _this.config.ext.styles,

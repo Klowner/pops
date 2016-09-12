@@ -1,10 +1,10 @@
 #! /usr/bin/env node
 "use strict";
-var chalk = require('chalk');
-var yargs = require('yargs');
+var chalk_1 = require('chalk');
+var yargs_1 = require('yargs');
 var make_1 = require('./make');
 var config_1 = require('./config');
-var input = yargs.argv._;
+var input = yargs_1.argv._;
 var command = input[0], args = input.slice(1);
 var config = new config_1.Config();
 function serverCommand(settings, watch) {
@@ -34,7 +34,7 @@ function getCommand(cmd) {
         'make::component': function () { return make_1.Make.component(args, settings); },
         'make::overview': function () { return make_1.Make.overview(args, settings); },
         // if command is not recognised
-        'default': function () { return console.error("Command " + chalk.red.bold(cmd) + " not recognised"); }
+        'default': function () { return console.error("Command " + chalk_1.red.bold(cmd) + " not recognised"); }
     };
     if (commands[cmd]) {
         fn = commands[cmd];

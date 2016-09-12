@@ -1,5 +1,5 @@
 "use strict";
-var path = require('path');
+var path_1 = require('path');
 var fileCreator_1 = require('../utils/fileCreator');
 var indexTemplate_1 = require('../templates/pages/indexTemplate');
 var PageGenerator = (function () {
@@ -10,9 +10,9 @@ var PageGenerator = (function () {
     }
     PageGenerator.prototype.generate = function () {
         var _this = this;
-        var dir = path.join(this.config.src, 'pages');
+        var dir = path_1.join(this.config.src, 'pages');
         this.args.map(function (page) {
-            var folder = path.join(dir, page);
+            var folder = path_1.join(dir, page);
             var files = [
                 {
                     path: folder + "/" + page + "." + _this.config.ext.templates,

@@ -1,5 +1,5 @@
 "use strict";
-var path = require('path');
+var path_1 = require('path');
 var fileCreator_1 = require('../utils/fileCreator');
 var indexTemplate_1 = require('../templates/patterns/indexTemplate');
 var PatternGenerator = (function () {
@@ -10,9 +10,9 @@ var PatternGenerator = (function () {
     }
     PatternGenerator.prototype.generate = function () {
         var _this = this;
-        var dir = path.join(this.config.src, 'patterns');
+        var dir = path_1.join(this.config.src, 'patterns');
         this.args.map(function (pattern) {
-            var folder = path.join(dir, pattern);
+            var folder = path_1.join(dir, pattern);
             var files = [
                 {
                     path: folder + "/styles/" + pattern + "." + _this.config.ext.styles,

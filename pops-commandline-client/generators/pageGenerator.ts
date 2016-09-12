@@ -1,4 +1,4 @@
-import * as path from 'path'
+import {join} from 'path'
 
 import {fileCreator} from '../utils/fileCreator'
 import {indexTemplate} from '../templates/pages/indexTemplate'
@@ -15,10 +15,10 @@ export class PageGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(this.config.src, 'pages')
+        let dir: string = join(this.config.src, 'pages')
 
         this.args.map((page: string) => {
-            let folder: string = path.join(dir, page)
+            let folder: string = join(dir, page)
             let files: any[] = [
                 {
                     path: `${folder}/${page}.${this.config.ext.templates}`,

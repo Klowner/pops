@@ -1,4 +1,4 @@
-import * as path from 'path'
+import {join} from 'path'
 
 import {fileCreator} from '../utils/fileCreator'
 import {indexTemplate} from '../templates/patterns/indexTemplate'
@@ -15,10 +15,10 @@ export class PatternGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(this.config.src, 'patterns')
+        let dir: string = join(this.config.src, 'patterns')
 
         this.args.map((pattern: string) => {
-            let folder: string = path.join(dir, pattern)
+            let folder: string = join(dir, pattern)
             let files: any[] = [
                 {
                     path: `${folder}/styles/${pattern}.${this.config.ext.styles}`,

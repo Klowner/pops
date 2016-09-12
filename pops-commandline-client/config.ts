@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import {statSync} from 'fs'
 import {join} from 'path'
 
 export class Config {
@@ -22,7 +22,7 @@ export class Config {
 
     public configExists(): boolean {
         try {
-            return fs.statSync(this.config).isFile()
+            return statSync(this.config).isFile()
         } catch (e) {
             return false
         }

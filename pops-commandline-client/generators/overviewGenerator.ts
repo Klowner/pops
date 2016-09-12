@@ -1,4 +1,4 @@
-import * as path from 'path'
+import {join} from 'path'
 
 import {fileCreator} from '../utils/fileCreator'
 
@@ -14,10 +14,10 @@ export class OverviewGenerator {
     }
 
     private generate(): void {
-        let dir: string = path.join(this.config.src, 'overviews')
+        let dir: string = join(this.config.src, 'overviews')
 
         this.args.map((overview: string) => {
-            let folder: string = path.join(dir, overview)
+            let folder: string = join(dir, overview)
             let files: any[] = [
                 {
                     path: `${folder}/${overview}.md`,

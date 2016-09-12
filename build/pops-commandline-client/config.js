@@ -1,5 +1,5 @@
 "use strict";
-var fs = require('fs');
+var fs_1 = require('fs');
 var path_1 = require('path');
 var Config = (function () {
     function Config() {
@@ -16,7 +16,7 @@ var Config = (function () {
     };
     Config.prototype.configExists = function () {
         try {
-            return fs.statSync(this.config).isFile();
+            return fs_1.statSync(this.config).isFile();
         }
         catch (e) {
             return false;

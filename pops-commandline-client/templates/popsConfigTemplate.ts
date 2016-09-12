@@ -1,5 +1,5 @@
 export const popsConfigTemplate: Function = (): string => `
-var path = require('path')
+var path = require('path');
 
 module.exports = {
     src: path.join(__dirname, './styleguide'),
@@ -16,5 +16,5 @@ module.exports = {
         templates: 'twig',
         scripts: 'js'
     }
-}
+};
 `
