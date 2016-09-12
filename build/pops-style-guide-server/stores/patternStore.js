@@ -1,10 +1,10 @@
 "use strict";
 var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
+var path_1 = require('path');
+var chalk_1 = require('chalk');
 var PatternStore = (function () {
     function PatternStore(src) {
-        this.src = path.join(src, 'patterns');
+        this.src = path_1.join(src, 'patterns');
     }
     PatternStore.prototype.gatherPatterns = function () {
         var _this = this;
@@ -12,11 +12,11 @@ var PatternStore = (function () {
         if (fs.existsSync(this.src)) {
             fs.readdirSync(this.src)
                 .filter(function (pattern) {
-                var dir = path.join(_this.src, pattern);
+                var dir = path_1.join(_this.src, pattern);
                 return fs.lstatSync(dir).isDirectory();
             })
                 .map(function (pattern) {
-                var index = path.join(_this.src, pattern, 'index.js');
+                var index = path_1.join(_this.src, pattern, 'index.js');
                 if (fs.existsSync(index)) {
                     var data = require(index);
                     for (var key in data.paths) {
@@ -32,7 +32,7 @@ var PatternStore = (function () {
             });
         }
         else {
-            var msg = chalk.red.bold('Error') + ": Patterns folder not found at: " + chalk.green(this.src);
+            var msg = chalk_1.red.bold('Error') + ": Patterns folder not found at: " + chalk_1.green(this.src);
             console.error(msg);
         }
     };

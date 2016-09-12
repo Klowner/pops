@@ -1,6 +1,6 @@
 import * as fs from 'fs'
-import * as path from 'path'
-import * as chalk from 'chalk'
+import {join} from 'path'
+import {red, green} from 'chalk'
 
 import {Store} from './store'
 import {PageStruct} from '../structs/pageStruct'
@@ -10,25 +10,25 @@ export class PageStore implements Store {
     private pages: PageStruct[]
 
     constructor(src: string) {
-        this.src = path.join(src, 'pages')
+        this.src = join(src, 'pages')
     }
 
     private gatherPages(): void {
-        this.pages = [];
+        this.pages = []
 
         if (fs.existsSync(this.src)) {
             fs.readdirSync(this.src)
-                .filter((pages) => {
-                    let dir: string = path.join(this.src, pages)
+                .filter((page: string) => {
+                    let dir: string = join(this.src, page)
                     return fs.lstatSync(dir).isDirectory()
                 })
-                .map((pages) => {
-                    let index: string = path.join(this.src, pages, 'index.js')
+                .map((page: string) => {
+                    let index: string = join(this.src, page, 'index.js')
 
                     if (fs.existsSync(index)) {
                         let data = require(index)
 
-                        for(let key in data.paths) {
+                        for (let key in data.paths) {
                             if (key === 'context') {
                                 data[key] = JSON.parse(fs.readFileSync(data.paths[key], 'utf8'))
                             } else {
@@ -40,7 +40,7 @@ export class PageStore implements Store {
                     }
                 })
         } else {
-            let msg: string = `${chalk.red.bold('Error')}: Pages folder not found at: ${chalk.green(this.src)}`
+            let msg: string = `${red.bold('Error')}: Pages folder not found at: ${green(this.src)}`
 
             console.error(msg)
         }

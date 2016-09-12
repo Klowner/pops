@@ -1,6 +1,6 @@
 import * as fs from 'fs'
-import * as path from 'path'
-import * as chalk from 'chalk'
+import {join} from 'path'
+import {red, green} from 'chalk'
 
 import {Store} from './store'
 import {ComponentStruct} from '../structs/componentStruct'
@@ -10,20 +10,20 @@ export class ComponentStore implements Store {
     private components: ComponentStruct[]
 
     constructor(src: string) {
-        this.src = path.join(src, 'components')
+        this.src = join(src, 'components')
     }
 
     private gatherComponents(): void {
-        this.components = [];
+        this.components = []
 
         if (fs.existsSync(this.src)) {
             fs.readdirSync(this.src)
-                .filter((component) => {
-                    let dir: string = path.join(this.src, component)
+                .filter((component: string) => {
+                    let dir: string = join(this.src, component)
                     return fs.lstatSync(dir).isDirectory()
                 })
-                .map((component) => {
-                    let index: string = path.join(this.src, component, 'index.js')
+                .map((component: string) => {
+                    let index: string = join(this.src, component, 'index.js')
 
                     if (fs.existsSync(index)) {
                         let data = require(index)
@@ -40,7 +40,7 @@ export class ComponentStore implements Store {
                     }
                 })
         } else {
-            let msg: string = `${chalk.red.bold('Error')}: Components folder not found at: ${chalk.green(this.src)}`
+            let msg: string = `${red.bold('Error')}: Components folder not found at: ${green(this.src)}`
 
             console.error(msg)
         }

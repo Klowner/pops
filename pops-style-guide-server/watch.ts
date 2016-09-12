@@ -19,7 +19,7 @@ export class Watch {
 
     public getWatcher(): any {
         console.log(`Watching: `)
-        this.directory.map((dir) => {
+        this.directory.map((dir: string) => {
             console.log(chalk.green(dir))
         })
 

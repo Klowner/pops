@@ -13,7 +13,7 @@ export class Data {
         let store: PageStore = new PageStore(src)
         let pages: PageStruct[] = store.all()
 
-        return pages.map((page) => this.view.addView(page))
+        return pages.map((page: PageStruct) => this.view.addView(page))
     }
 
     public patterns(src: string): PatternStruct[] {
@@ -22,14 +22,14 @@ export class Data {
 
         if (this.view.preRenderPartials()) {
             patterns = patterns
-                .map((pattern) => {
+                .map((pattern: PatternStruct) => {
                     this.view.registerPartial('pattern', pattern.name, pattern.template)
 
                     return pattern
                 })
         }
 
-        return patterns.map((pattern) => this.view.addView(pattern))
+        return patterns.map((pattern: PatternStruct) => this.view.addView(pattern))
     }
 
     public overviews(src: string): OverviewStruct[] {
@@ -44,21 +44,21 @@ export class Data {
 
         if (this.view.preRenderPartials()) {
             components = components
-                .map((component) => {
+                .map((component: ComponentStruct) => {
                     this.view.registerPartial('component', component.name, component.template)
 
                     return component
                 })
         }
 
-        return components.map((component) => this.view.addView(component))
+        return components.map((component: ComponentStruct) => this.view.addView(component))
     }
 
     public all(src: string): any {
-        let patterns = this.patterns(src)
-        let components = this.components(src)
-        let pages = this.pages(src)
-        let overviews = this.overviews(src)
+        let patterns: PatternStruct[] = this.patterns(src)
+        let components: ComponentStruct[] = this.components(src)
+        let pages: PageStruct[] = this.pages(src)
+        let overviews: OverviewStruct[] = this.overviews(src)
 
         return {overviews, components, patterns, pages}
     }

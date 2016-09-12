@@ -8,17 +8,28 @@ var View = (function () {
     function View(ext) {
         if (ext === void 0) { ext = ''; }
         this.templateExt = ext || config.ext.templates;
-        switch (this.templateExt) {
-            case 'twig':
-                this.engine = new twig_1.Twig();
-                break;
-            case 'hbs':
-                this.engine = new handlebars_1.Handlebars();
-                break;
-            default:
-                this.engine = new handlebars_1.Handlebars();
-        }
+        this.setEngine(this.templateExt);
     }
+    View.prototype.setEngine = function (engine) {
+        var _this = this;
+        var engines = {
+            'twig': function () {
+                _this.engine = new twig_1.Twig();
+            },
+            'hbs': function () {
+                _this.engine = new handlebars_1.Handlebars();
+            },
+            'default': function () {
+                _this.engine = new handlebars_1.Handlebars();
+            }
+        };
+        if (engines[engine]) {
+            engines[engine]();
+        }
+        else {
+            engines['default']();
+        }
+    };
     View.prototype.preRenderPartials = function () {
         return this.engine.preRenderedPartials;
     };

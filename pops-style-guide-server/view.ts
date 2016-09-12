@@ -13,15 +13,26 @@ export class View {
     constructor(ext: string = '') {
         this.templateExt = ext || config.ext.templates
 
-        switch (this.templateExt) {
-            case 'twig':
+        this.setEngine(this.templateExt)
+    }
+
+    private setEngine(engine: string): void {
+        let engines: any = {
+            'twig': () => {
                 this.engine = new Twig()
-                break
-            case 'hbs':
+            },
+            'hbs': () => {
                 this.engine = new Handlebars()
-                break
-            default:
+            },
+            'default': () => {
                 this.engine = new Handlebars()
+            }
+        }
+
+        if (engines[engine]) {
+            engines[engine]()
+        } else {
+            engines['default']()
         }
     }
 
@@ -40,7 +51,7 @@ export class View {
     }
 
     public asText(src: string, context: any): string {
-        let content = readFileSync(src, 'utf8')
+        let content: string = readFileSync(src, 'utf8')
 
         return this.engine.renderViewAsText(content, context)
     }

@@ -1,6 +1,6 @@
 import * as fs from 'fs'
-import * as path from 'path'
-import * as chalk from 'chalk'
+import {join} from 'path'
+import {red, green} from 'chalk'
 
 import {Store} from './store'
 import {PatternStruct} from '../structs/patternStruct'
@@ -10,20 +10,20 @@ export class PatternStore implements Store {
     private patterns: PatternStruct[]
 
     constructor(src: string) {
-        this.src = path.join(src, 'patterns')
+        this.src = join(src, 'patterns')
     }
 
     private gatherPatterns(): void {
-        this.patterns = [];
+        this.patterns = []
 
         if (fs.existsSync(this.src)) {
             fs.readdirSync(this.src)
-                .filter((pattern) => {
-                    let dir: string = path.join(this.src, pattern)
+                .filter((pattern: string) => {
+                    let dir: string = join(this.src, pattern)
                     return fs.lstatSync(dir).isDirectory()
                 })
-                .map((pattern) => {
-                    let index: string = path.join(this.src, pattern, 'index.js')
+                .map((pattern: string) => {
+                    let index: string = join(this.src, pattern, 'index.js')
 
                     if (fs.existsSync(index)) {
                         let data = require(index)
@@ -40,7 +40,7 @@ export class PatternStore implements Store {
                     }
                 })
         } else {
-            let msg: string = `${chalk.red.bold('Error')}: Patterns folder not found at: ${chalk.green(this.src)}`
+            let msg: string = `${red.bold('Error')}: Patterns folder not found at: ${green(this.src)}`
 
             console.error(msg)
         }

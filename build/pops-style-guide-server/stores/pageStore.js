@@ -1,22 +1,22 @@
 "use strict";
 var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
+var path_1 = require('path');
+var chalk_1 = require('chalk');
 var PageStore = (function () {
     function PageStore(src) {
-        this.src = path.join(src, 'pages');
+        this.src = path_1.join(src, 'pages');
     }
     PageStore.prototype.gatherPages = function () {
         var _this = this;
         this.pages = [];
         if (fs.existsSync(this.src)) {
             fs.readdirSync(this.src)
-                .filter(function (pages) {
-                var dir = path.join(_this.src, pages);
+                .filter(function (page) {
+                var dir = path_1.join(_this.src, page);
                 return fs.lstatSync(dir).isDirectory();
             })
-                .map(function (pages) {
-                var index = path.join(_this.src, pages, 'index.js');
+                .map(function (page) {
+                var index = path_1.join(_this.src, page, 'index.js');
                 if (fs.existsSync(index)) {
                     var data = require(index);
                     for (var key in data.paths) {
@@ -32,7 +32,7 @@ var PageStore = (function () {
             });
         }
         else {
-            var msg = chalk.red.bold('Error') + ": Pages folder not found at: " + chalk.green(this.src);
+            var msg = chalk_1.red.bold('Error') + ": Pages folder not found at: " + chalk_1.green(this.src);
             console.error(msg);
         }
     };

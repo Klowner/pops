@@ -1,10 +1,10 @@
 "use strict";
 var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
+var path_1 = require('path');
+var chalk_1 = require('chalk');
 var ComponentStore = (function () {
     function ComponentStore(src) {
-        this.src = path.join(src, 'components');
+        this.src = path_1.join(src, 'components');
     }
     ComponentStore.prototype.gatherComponents = function () {
         var _this = this;
@@ -12,11 +12,11 @@ var ComponentStore = (function () {
         if (fs.existsSync(this.src)) {
             fs.readdirSync(this.src)
                 .filter(function (component) {
-                var dir = path.join(_this.src, component);
+                var dir = path_1.join(_this.src, component);
                 return fs.lstatSync(dir).isDirectory();
             })
                 .map(function (component) {
-                var index = path.join(_this.src, component, 'index.js');
+                var index = path_1.join(_this.src, component, 'index.js');
                 if (fs.existsSync(index)) {
                     var data = require(index);
                     for (var key in data.paths) {
@@ -32,7 +32,7 @@ var ComponentStore = (function () {
             });
         }
         else {
-            var msg = chalk.red.bold('Error') + ": Components folder not found at: " + chalk.green(this.src);
+            var msg = chalk_1.red.bold('Error') + ": Components folder not found at: " + chalk_1.green(this.src);
             console.error(msg);
         }
     };

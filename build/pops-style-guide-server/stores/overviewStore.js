@@ -1,10 +1,10 @@
 "use strict";
 var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
+var path_1 = require('path');
+var chalk_1 = require('chalk');
 var OverviewStore = (function () {
     function OverviewStore(src) {
-        this.src = path.join(src, 'overviews');
+        this.src = path_1.join(src, 'overviews');
     }
     OverviewStore.prototype.gatherOverviews = function () {
         var _this = this;
@@ -12,11 +12,11 @@ var OverviewStore = (function () {
         if (fs.existsSync(this.src)) {
             fs.readdirSync(this.src)
                 .filter(function (overview) {
-                var dir = path.join(_this.src, overview);
+                var dir = path_1.join(_this.src, overview);
                 return fs.lstatSync(dir).isDirectory();
             })
                 .map(function (overview) {
-                var file = path.join(_this.src, overview, overview + ".md");
+                var file = path_1.join(_this.src, overview, overview + ".md");
                 var data = {
                     name: overview.split('.').slice(-1).join('.'),
                     content: fs.readFileSync(file, 'utf8'),
@@ -26,7 +26,7 @@ var OverviewStore = (function () {
             });
         }
         else {
-            var msg = chalk.red.bold('Error') + ": Overviews folder not found at: " + chalk.green(this.src);
+            var msg = chalk_1.red.bold('Error') + ": Overviews folder not found at: " + chalk_1.green(this.src);
             console.error(msg);
         }
     };

@@ -1,5 +1,5 @@
-import * as path from 'path'
-import * as chalk from 'chalk'
+import {cyan} from 'chalk'
+import {join, basename} from 'path'
 import * as hbs from 'handlebars'
 import * as express from 'express'
 
@@ -31,23 +31,23 @@ export class Server {
     }
 
     private setup(): void {
-        this.app.use('/dist', express.static(path.join(__dirname, '../..', 'pops-style-guide-frontend/dist')))
+        this.app.use('/dist', express.static(join(__dirname, '../..', 'pops-style-guide-frontend/dist')))
 
-        this.app.use('/api', require('json-server').router(this.db))
+        this.app.use('/api', require('json-server').router( this.db))
 
         this.app.get('/', (req, res) => {
-            let indexFile = path.join(__dirname, '../..', 'pops-style-guide-frontend/index.html')
+            let indexFile: string = join(__dirname, '../..', 'pops-style-guide-frontend/index.html')
 
             res.sendFile(indexFile)
         })
 
         this.app.get('/:type/:name', (req, res) => {
-            let type = req.params.type
-            let name = req.params.name
-            let item = this.db[type].find(x => x.name === name)
-            let demoFile = path.join(__dirname, '../..', 'pops-style-guide-frontend/demo.html')
-            let data = { item: item, globals: this.globals }
-            let view = this.view.asText(demoFile, data)
+            let type: string = req.params.type
+            let name: string = req.params.name
+            let item: any = this.db[type].find((x: any) => x.name === name)
+            let demoFile: string = join(__dirname, '../..', 'pops-style-guide-frontend/demo.html')
+            let data: any = {item: item, globals: this.globals}
+            let view: string = this.view.asText(demoFile, data)
 
             res.send(view)
         })
@@ -64,22 +64,22 @@ export class Server {
         let port: number = process.env.PORT || 9095
 
         this.http.listen(port, () => {
-            console.log(`Listening at ${chalk.cyan(`http://127.0.0.1:${port}`)}`)
+            console.log(`Listening at ${cyan(`http://127.0.0.1:${port}`)}`)
         })
     }
 
     public watch(): void {
         let dirsToWatch: string[] = [
-            path.join(this.root, 'pages'),
-            path.join(this.root, 'patterns'),
-            path.join(this.root, 'overviews'),
-            path.join(this.root, 'components')
+            join(this.root, 'pages'),
+            join(this.root, 'patterns'),
+            join(this.root, 'overviews'),
+            join(this.root, 'components')
         ]
         let watcher: Watch = new Watch(dirsToWatch)
 
         watcher.getWatcher()
             .on('change', (filePath: string) => {
-                let name: string = path.basename(filePath).split('.').slice(0, -1).join('')
+                let name: string = basename(filePath).split('.').slice(0, -1).join('')
 
                 if (name === 'README' || name === 'context') {
                     name = filePath.split('/').slice(-2)[0]
