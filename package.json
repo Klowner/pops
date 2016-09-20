@@ -2,9 +2,10 @@
   "name": "pops",
   "version": "0.0.8-dev",
   "description": "A commandline client that is capable of generating styleguides, and styleguide based workflows.",
-  "main": "build/pops-commandline-client/pops.js",
+  "main": "app/bin/pops.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app/bin/pops.js serve",
+    "watch": "node app/bin/pops.js watch"
   },
   "keywords": [
     "styleguide",
@@ -15,7 +16,7 @@
   ],
   "preferGlobal": true,
   "bin": {
-    "pops": "build/pops-commandline-client/pops.js"
+    "pops": "app/bin/pops.js"
   },
   "author": "BrianDGLS <briandgls@yahoo.com>",
   "license": "ISC",
