@@ -1,8 +1,8 @@
 import {join} from 'path'
 import * as twig from 'twig'
 
-import {ViewEngine} from './ViewEngine'
-import {Config} from '../../pops-commandline-client/config'
+import {ViewEngine} from './viewEngine'
+import {Config} from '../../bin/config'
 
 let config: any = new Config().getConfig()
 let srcDir: string = config.src

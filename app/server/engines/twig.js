@@ -1,7 +1,7 @@
 "use strict";
 var path_1 = require('path');
 var twig = require('twig');
-var config_1 = require('../../pops-commandline-client/config');
+var config_1 = require('../../bin/config');
 var config = new config_1.Config().getConfig();
 var srcDir = config.src;
 var patternDir = path_1.join(srcDir, 'patterns/');

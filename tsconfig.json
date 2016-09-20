@@ -1,14 +1,12 @@
 {
     "compilerOptions": {
-        "outDir": "build",
+        "rootDir": "app",
         "module": "commonjs",
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": false
     },
     "exclude": [
-        "node_modules",
-        "public",
-        "build"
+        "node_modules"
     ]
 }

@@ -1,6 +1,6 @@
 import {readFileSync} from 'fs'
 
-import {Config} from '../pops-commandline-client/config'
+import {Config} from '../bin/config'
 import {Twig} from './engines/twig'
 import {Handlebars} from './engines/handlebars'
 

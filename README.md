@@ -40,7 +40,7 @@ After installing pops run `$ pops init` to generate a `pops.config.js` in the cu
 directory. It should look like the following.
 
 ```javascript
-var path = require('path')
+var path = require('path');
 
 module.exports = {
     src: path.join(__dirname, './styleguide'),
@@ -57,7 +57,7 @@ module.exports = {
         templates: 'twig',
         scripts: 'js'
     }
-}
+};
 ```
 
 ### src

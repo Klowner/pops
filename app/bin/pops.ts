@@ -10,7 +10,7 @@ let [command, ...args] = input
 let config: Config = new Config()
 
 function serverCommand(settings: any, watch: boolean = false): void {
-    let {Server}: any = require('../pops-style-guide-server/server')
+    let {Server}: any = require('../server/server')
 
     if (watch) {
         new Server(settings).watch()

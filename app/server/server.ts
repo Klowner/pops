@@ -31,12 +31,12 @@ export class Server {
     }
 
     private setup(): void {
-        this.app.use('/dist', express.static(join(__dirname, '../..', 'pops-style-guide-frontend/dist')))
+        this.app.use('/dist', express.static(join(__dirname, '..', 'www/dist')))
 
         this.app.use('/api', require('json-server').router( this.db))
 
         this.app.get('/', (req, res) => {
-            let indexFile: string = join(__dirname, '../..', 'pops-style-guide-frontend/index.html')
+            let indexFile: string = join(__dirname, '..', 'www/index.html')
 
             res.sendFile(indexFile)
         })
@@ -45,7 +45,7 @@ export class Server {
             let type: string = req.params.type
             let name: string = req.params.name
             let item: any = this.db[type].find((x: any) => x.name === name)
-            let demoFile: string = join(__dirname, '../..', 'pops-style-guide-frontend/demo.html')
+            let demoFile: string = join(__dirname, '..', 'www/demo.html')
             let data: any = {item: item, globals: this.globals}
             let view: string = this.view.asText(demoFile, data)
 

@@ -1,6 +1,6 @@
 "use strict";
 var fs_1 = require('fs');
-var config_1 = require('../pops-commandline-client/config');
+var config_1 = require('../bin/config');
 var twig_1 = require('./engines/twig');
 var handlebars_1 = require('./engines/handlebars');
 var config = new config_1.Config().getConfig();

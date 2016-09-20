@@ -9,7 +9,7 @@ var command = input[0], args = input.slice(1);
 var config = new config_1.Config();
 function serverCommand(settings, watch) {
     if (watch === void 0) { watch = false; }
-    var Server = require('../pops-style-guide-server/server').Server;
+    var Server = require('../server/server').Server;
     if (watch) {
         new Server(settings).watch();
     }

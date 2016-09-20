@@ -1,6 +1,6 @@
 import * as hbs from 'handlebars'
 
-import {ViewEngine} from './ViewEngine'
+import {ViewEngine} from './viewEngine'
 
 export class Handlebars implements ViewEngine {
     engine: any = hbs

@@ -4,9 +4,9 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 let vueConfig = {
     name: 'js',
-    entry: './pops-style-guide-frontend/src/main.js',
+    entry: './app/www/src/main.js',
     output: {
-        path: path.resolve(__dirname, './pops-style-guide-frontend/dist'),
+        path: path.resolve(__dirname, './app/www/dist'),
         publicPath: '/dist/',
         filename: 'build.js'
     },
@@ -45,9 +45,9 @@ let vueConfig = {
 
 let styleConfig = {
     name: 'css',
-    entry: './pops-style-guide-frontend/scss/main.scss',
+    entry: './app/www/scss/main.scss',
     output: {
-        path: path.resolve(__dirname, './pops-style-guide-frontend/dist'),
+        path: path.resolve(__dirname, './app/www/dist'),
         publicPath: '/dist/',
         filename: 'main.scss'
     },
@@ -58,7 +58,7 @@ let styleConfig = {
         loaders: [{
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract('style', 'css!sass'),
-            include: path.resolve(__dirname, './pops-style-guide-frontend/scss')
+            include: path.resolve(__dirname, './app/www/scss')
         }]
     },
     plugins: [
