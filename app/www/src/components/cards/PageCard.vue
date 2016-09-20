@@ -4,7 +4,10 @@
           <h1 class="pops-card__title">{{ page.name }}</h1>
         </a>
 
-        <iframe class="pops-card__iframe" :src=`/pages/${page.name}` frameborder="0"></iframe>
+        <iframe class="pops-card__iframe"
+                :src=`/pages/${page.name}`
+                onload="resizeIframe(this)"
+                frameborder="0"></iframe>
     </article>
 </template>
 

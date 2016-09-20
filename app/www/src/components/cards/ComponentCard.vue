@@ -4,7 +4,10 @@
           <h1 class="pops-card__title">{{ component.name }}</h1>
         </a>
 
-        <iframe class="pops-card__iframe" :src=`/components/${component.name}` frameborder="0"></iframe>
+        <iframe class="pops-card__iframe"
+                :src=`/components/${component.name}`
+                onload="resizeIframe(this)"
+                frameborder="0"></iframe>
 
         <tab-set :active="0">
             <tab header="Overview">

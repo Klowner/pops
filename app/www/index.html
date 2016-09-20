@@ -15,6 +15,11 @@
     <body class="pops">
         <app></app>
         <script src="dist/build.js"></script>
+        <script>
+            function resizeIframe(iframe) {
+                iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+        </script>
     </body>
 
 </html>

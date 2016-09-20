@@ -3,7 +3,10 @@
         <a :href=`/patterns/${pattern.name}` class="pops-card__link"><h1 class="pops-card__title">{{ pattern.name
             }}</h1></a>
 
-        <iframe class="pops-card__iframe" :src=`/patterns/${pattern.name}` frameborder="0"></iframe>
+        <iframe class="pops-card__iframe"
+                :src=`/patterns/${pattern.name}`
+                onload="resizeIframe(this)"
+                frameborder="0"></iframe>
 
         <tab-set :active="0">
             <tab header="Overview">
