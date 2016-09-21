@@ -22,14 +22,19 @@ export default {
         MetaPanel
     },
     methods: {
+        groupFilter(group) {
+            if (group !== 'meta') {
+                return group
+            }
+        },
         getGroups(data) {
             let keys = Object.keys(data)
-            let filter = (key) => ({
+            let filteredGroups = keys.filter(this.groupFilter)
+
+            return filteredGroups.map((key) => ({
                 name: key,
                 items: data[key]
-            })
-
-            return keys.map(filter)
+            }))
         },
         requestSuccess(response) {
             let data = JSON.parse(response.body)
