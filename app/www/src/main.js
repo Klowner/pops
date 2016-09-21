@@ -14,5 +14,7 @@ Vue.filter('markdown', (value) => marked(value))
 
 new Vue({
     el: 'body',
-    components: { App }
+    components: {
+        App
+    }
 })
