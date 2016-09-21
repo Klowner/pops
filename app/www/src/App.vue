@@ -1,17 +1,25 @@
 <template>
-<side-nav v-bind:groups='groups'>
-</side-nav>
-<main-list v-bind:db='db'></main-list>
+<div class="pops">
+    <side-nav v-bind:groups='groups'>
+    </side-nav>
+    <div class="pops__content">
+        <meta-panel v-bind:meta='meta'>
+        </meta-panel>
+        <main-list v-bind:db='db'></main-list>
+    </div>
+</div>
 </template>
 
 <script>
 import SideNav from './components/SideNav.vue'
 import MainList from './components/MainList.vue'
+import MetaPanel from './components/MetaPanel.vue'
 
 export default {
     components: {
         SideNav,
-        MainList
+        MainList,
+        MetaPanel
     },
     methods: {
         getGroups(data) {
@@ -27,6 +35,7 @@ export default {
             let data = JSON.parse(response.body)
 
             this.db = data
+            this.meta = data.meta
             this.groups = this.getGroups(data)
         },
         requestFailure() {
@@ -39,7 +48,8 @@ export default {
     data() {
         return {
             db: {},
-            groups: []
+            groups: [],
+            meta: {}
         }
     }
 }

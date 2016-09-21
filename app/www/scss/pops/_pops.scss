@@ -1,4 +1,13 @@
 .pops {
     display: flex;
     flex-wrap: wrap;
+
+    &__content {
+        flex: 1;
+        padding: $unit__l;
+        @include smallScreen {
+            flex: 100%;
+            order: 1;
+        }
+    }
 }

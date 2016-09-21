@@ -14,7 +14,7 @@ var Server = (function () {
         this.settings = settings;
         this.root = this.settings.src;
         this.data = new data_1.Data();
-        this.db = this.data.all(this.root);
+        this.db = this.data.all(this.settings);
         this.globals = settings.globals;
         this.setup();
         this.start();
@@ -38,7 +38,7 @@ var Server = (function () {
         });
     };
     Server.prototype.eventEmit = function (event, name) {
-        var viewData = this.data.all(this.root);
+        var viewData = this.data.all(this.settings);
         viewData.name = name;
         this.io.emit(event, viewData);
     };

@@ -42,12 +42,13 @@ var Data = (function () {
         }
         return components.map(function (component) { return _this.view.addView(component); });
     };
-    Data.prototype.all = function (src) {
+    Data.prototype.all = function (settings) {
+        var src = settings.src, meta = settings.meta;
         var patterns = this.patterns(src);
         var components = this.components(src);
         var pages = this.pages(src);
         var overviews = this.overviews(src);
-        return { overviews: overviews, components: components, patterns: patterns, pages: pages };
+        return { meta: meta, overviews: overviews, components: components, patterns: patterns, pages: pages };
     };
     return Data;
 }());

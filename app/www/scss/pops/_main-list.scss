@@ -1,11 +1,4 @@
 .pops-main-list {
-    flex: 1;
-    padding: $unit__l;
-    @include smallScreen {
-        flex: 100%;
-        order: 1;
-    }
-
     &__heading {
         border-bottom: 1px solid $grey--light;
         color: $black;

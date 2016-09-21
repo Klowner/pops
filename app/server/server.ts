@@ -23,7 +23,7 @@ export class Server {
         this.settings = settings
         this.root = this.settings.src
         this.data = new Data()
-        this.db = this.data.all(this.root)
+        this.db = this.data.all(this.settings)
         this.globals = settings.globals
 
         this.setup()
@@ -54,7 +54,7 @@ export class Server {
     }
 
     private eventEmit(event: string, name: string): void {
-        let viewData: any = this.data.all(this.root)
+        let viewData: any = this.data.all(this.settings)
         viewData.name = name
 
         this.io.emit(event, viewData)

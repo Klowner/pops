@@ -54,12 +54,13 @@ export class Data {
         return components.map((component: ComponentStruct) => this.view.addView(component))
     }
 
-    public all(src: string): any {
+    public all(settings: any): any {
+        let {src, meta} = settings
         let patterns: PatternStruct[] = this.patterns(src)
         let components: ComponentStruct[] = this.components(src)
         let pages: PageStruct[] = this.pages(src)
         let overviews: OverviewStruct[] = this.overviews(src)
 
-        return {overviews, components, patterns, pages}
+        return { meta, overviews, components, patterns, pages }
     }
 }
