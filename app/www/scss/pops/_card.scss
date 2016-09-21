@@ -1,25 +1,25 @@
 .pops-card {
-  padding: 0 0 $unit__m;
+    padding: 0 0 $unit__m;
 
-  a {
-    color: $black;
-  }
+    a {
+        color: $black;
+    }
 
-  &__title {
-    @include font--italic;
+    &__title {
+        @include font--italic;
+        font-size: 24px;
+        text-transform: capitalize;
+    }
 
-    font-size: 24px;
-    text-transform: capitalize;
-  }
+    &__overview,
+    pre {
+        background: $grey--accent;
+        color: $black--dark;
+        padding: $unit__m;
+    }
 
-  &__overview, pre {
-    background: $grey--accent;
-    color: $black--dark;
-    padding: $unit__m;
-  }
-
-  &__iframe {
-    border: 0;
-    width: 100%;
-  }
+    &__iframe {
+        border: 0;
+        width: 100%;
+    }
 }

@@ -25,7 +25,6 @@ $font-family: 'Open Sans', sans-serif;
 
 // Screen Break
 $breakpoint: 1080px;
-
 @mixin smallScreen {
   @media (max-width: $breakpoint) {
     @content;

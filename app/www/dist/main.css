@@ -77,6 +77,7 @@ input:checked ~ .pops-dropdown__inner {
     background: #f9fafc;
     height: 100%;
     position: fixed;
+    overflow: auto;
     top: 0;
     width: 14em; }
     @media (max-width: 1080px) {
@@ -129,7 +130,8 @@ input:checked ~ .pops-dropdown__inner {
     font-style: italic;
     font-size: 24px;
     text-transform: capitalize; }
-  .pops-card__overview, .pops-card pre {
+  .pops-card__overview,
+  .pops-card pre {
     background: #f9fafc;
     color: #000;
     padding: 20px; }
