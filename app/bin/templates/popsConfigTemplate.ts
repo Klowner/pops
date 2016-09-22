@@ -29,6 +29,9 @@ module.exports = {
         javascripts: [
             // Include javascripts
         ]
-    }
+    },
+    // URL of custom styleguide stylesheets
+    // will replace the pops default stylesheet
+    customStylesheet: []
 };
 `.trim()

@@ -36,9 +36,17 @@ export class Server {
         this.app.use('/api', require('json-server').router( this.db))
 
         this.app.get('/', (req, res) => {
-            let indexFile: string = join(__dirname, '..', 'www/index.html')
+            let customStylesheet: string[] = this.settings.customStylesheet
+            let data: any = {}
 
-            res.sendFile(indexFile)
+            if(customStylesheet.length) {
+                data.customStylesheet = customStylesheet
+            }
+
+            let indexFile: string = join(__dirname, '..', 'www/index.html')
+            let view: string = this.view.asText(indexFile, data)
+
+            res.send(view)
         })
 
         this.app.get('/:type/:name', (req, res) => {

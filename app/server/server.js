@@ -24,8 +24,14 @@ var Server = (function () {
         this.app.use('/dist', express.static(path_1.join(__dirname, '..', 'www/dist')));
         this.app.use('/api', require('json-server').router(this.db));
         this.app.get('/', function (req, res) {
+            var customStylesheet = _this.settings.customStylesheet;
+            var data = {};
+            if (customStylesheet.length) {
+                data.customStylesheet = customStylesheet;
+            }
             var indexFile = path_1.join(__dirname, '..', 'www/index.html');
-            res.sendFile(indexFile);
+            var view = _this.view.asText(indexFile, data);
+            res.send(view);
         });
         this.app.get('/:type/:name', function (req, res) {
             var type = req.params.type;
