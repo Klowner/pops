@@ -1,4 +1,4 @@
-# Pops
+# Pops - 0.0.8-dev
 
 A commandline client that is capable of generating styleguides, and styleguide
 based workflows.
@@ -43,7 +43,26 @@ directory. It should look like the following.
 var path = require('path');
 
 module.exports = {
+    // folder where components, patterns, pages, and overviews will be placed
     src: path.join(__dirname, './styleguide'),
+    // meta info that will be included in the api under the meta key
+    meta: {
+        // appears in styleguide
+        name: '',
+        // displayed under name in styleguide
+        // keep short as overviews should be used for more substantial info
+        summary: '',
+        authors: [
+            // list of developers who have worked on the project
+        ]
+    },
+    // file extensions that will be used
+    ext: {
+        styles: 'scss',
+        templates: 'twig',
+        scripts: 'js'
+    },
+    // stylesheets and scripts that will be placed in styleguide head
     globals: {
         stylesheets: [
             // Include stylesheets
@@ -52,11 +71,11 @@ module.exports = {
             // Include javascripts
         ]
     },
-    ext: {
-        styles: 'scss',
-        templates: 'twig',
-        scripts: 'js'
-    }
+    // URL of custom styleguide stylesheets
+    // will replace the pops default stylesheet
+    customStylesheet: [
+        // custom stylesheets
+    ]
 };
 ```
 
@@ -64,6 +83,10 @@ module.exports = {
 
 The `src` option tells pops where it should place any generated items. It is also
 where pops will look when serving it's styleguide.
+
+### meta
+
+Meta information displayed at the top of the styleguide.
 
 ### globals
 
@@ -76,6 +99,10 @@ The `ext` option tells pops what file extension you wish to use. Pops will read 
 and create files using these intructions.
 
 Templates by default work in either handlebars or twig format.
+
+### customStylesheet
+
+An array of custom stylesheet urls. Will replace the pops styleguide's default stylesheets
 
 ## Contributing
 
