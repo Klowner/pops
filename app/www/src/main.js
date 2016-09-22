@@ -1,10 +1,8 @@
-'use strict'
-
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import App from './App.vue'
-
 import marked from 'marked'
+
+import App from './App.vue'
 
 Vue.use(VueResource)
 
