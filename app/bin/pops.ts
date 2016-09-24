@@ -40,9 +40,9 @@ function getCommand(cmd: string = ''): void {
     }
 
     if (commands[cmd]) {
-        fn = commands[cmd];
+        fn = commands[cmd]
     } else {
-        fn = commands['default'];
+        fn = commands['default']
     }
 
     fn()
