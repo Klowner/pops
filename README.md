@@ -12,7 +12,7 @@ Install globally for best use.
 Once installed you will have access to the pops commandline-client.
 
     $ pops
-      
+
       ██████╗  ██████╗ ██████╗ ███████╗
       ██╔══██╗██╔═══██╗██╔══██╗██╔════╝
       ██████╔╝██║   ██║██████╔╝███████╗
@@ -31,7 +31,8 @@ Once installed you will have access to the pops commandline-client.
         make::overview   Creates one or multiple overview/s
         make::pattern    Creates one or multiple pattern/s
         make::page       Creates one or multiple page/s
-
+        --------------------------------------------------------------------------
+        version          Prints pops version
 
 ## Config
 
@@ -106,15 +107,15 @@ An array of custom stylesheet urls. Will replace the pops styleguide's default s
 
 ## Contributing
 
-Feel free to open an [issue](https://github.com/BrianDGLS/pops/issues) 
+Feel free to open an [issue](https://github.com/BrianDGLS/pops/issues)
 or [pull request](https://github.com/BrianDGLS/pops/pulls).
 
 Pay special attention to issues mark with the `help wanted` label.
 
 Pull requests should be made against the develop branch.
 
-Please also make an attempt to keep your code style aligned with the code 
+Please also make an attempt to keep your code style aligned with the code
 which currently exists.
 
-You should also compile your typscript files and any frontend changes 
+You should also compile your typscript files and any frontend changes
 before commiting.

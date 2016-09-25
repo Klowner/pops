@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 import {red} from 'chalk'
 import {argv} from 'yargs'
+import {join} from 'path'
 
 import {Make} from './make'
 import {Config} from './config'
@@ -19,6 +20,14 @@ function serverCommand(settings: any, watch: boolean = false): void {
     }
 }
 
+function getVersion(): string {
+    let pathToPackageJson: string = join(__dirname, '../..', './package.json')
+    let packageJson: any = require(pathToPackageJson)
+    let version: string = packageJson.version
+
+    return version
+}
+
 function getCommand(cmd: string = ''): void {
     let fn: Function
     let settings: any = config.getConfig()
@@ -27,15 +36,13 @@ function getCommand(cmd: string = ''): void {
         '': () => require('./help'),
         'help': () => require('./help'),
         'init': () => require('./init'),
-        // server commands
         'serve': () => serverCommand(settings),
         'watch': () => serverCommand(settings, true),
-        // make commands
         'make::page': () => Make.page(args, settings),
         'make::pattern': () => Make.pattern(args, settings),
         'make::component': () => Make.component(args, settings),
         'make::overview': () => Make.overview(args, settings),
-        // if command is not recognised
+        'version': () => console.log(getVersion()),
         'default': () => console.error(`Command ${red.bold(cmd)} not recognised`)
     }
 

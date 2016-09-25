@@ -20,5 +20,7 @@ Commands:
   ${bold('make::overview')}   Creates one or multiple overview/s
   ${bold('make::pattern')}    Creates one or multiple pattern/s
   ${bold('make::page')}       Creates one or multiple page/s
+  --------------------------------------------------------------------------
+  ${bold('version')}          Prints pops version
 `)
 }())
