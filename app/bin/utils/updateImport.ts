@@ -6,9 +6,9 @@ export function updateImport(dir: string, type: string, name: string, ext: strin
     let file: string = join(dir, `${type}.${ext}`)
 
     if (ext === 'scss' || ext === 'less') {
-        importStatement = `\n@import './${name}/styles/${name}.${ext}';`
+        importStatement = `@import './${name}/styles/${name}.${ext}';\n`
     } else if (ext === 'js') {
-        importStatement = `\nmodule.exports.${name.replace(' ', '-')} = require('./${name}/scripts/${name}.${ext}');`
+        importStatement = `module.exports.${name.replace(' ', '-')} = require('./${name}/scripts/${name}.${ext}');\n`
     }
 
     if (fs.existsSync(file)) {
