@@ -47,7 +47,7 @@ export default {
             console.log('Could not get /api/db')
         }
     },
-    ready() {
+    mounted() {
         this.$http.get('/api/db').then(this.requestSuccess, this.requestFailure)
     },
     data() {

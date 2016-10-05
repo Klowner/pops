@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     {{#each globals.stylesheets}}
-        <link rel="stylesheet" href="{{this}}">
+        <link rel="stylesheet" v-bind:href="this">
     {{/each}}
     <title>{{ item.name }}</title>
     <script src="/socket.io/socket.io.js"></script>
@@ -18,11 +18,10 @@
     </script>
 </head>
 <body>
-
     {{{ item.view }}}
 
     {{#each globals.javascripts}}
-        <script src="{{this}}"></script>
+        <script v-bind:src="this"></script>
     {{/each}}
 </body>
 </html>

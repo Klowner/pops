@@ -6,7 +6,7 @@
     <title>Pops - Styleguide</title>
     {{#if customStylesheet}}
         {{#each customStylesheet}}
-            <link rel="stylesheet" href="{{this}}">
+            <link rel="stylesheet" v-bind:href="this">
         {{/each}}
     {{else}}
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">

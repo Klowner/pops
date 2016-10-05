@@ -10,17 +10,7 @@ export default {
         header: {
             type: String
         },
-        disabled: {
-            type: Boolean,
-            coerce(val) {
-                return (typeof val !== 'string' ? val :
-                    val === 'true' ? true :
-                    val === 'false' ? false :
-                    val === 'null' ? false :
-                    val === 'undefined' ? false : val)
-            },
-            default: false
-        }
+        disabled: Boolean
     },
     data() {
         return {
@@ -34,6 +24,13 @@ export default {
         },
         transition() {
             return this.$parent.effect
+        },
+        disabledNormalized() {
+            return (typeof this.disabled !== 'string' ? val :
+                val === 'true' ? true :
+                val === 'false' ? false :
+                val === 'null' ? false :
+                val === 'undefined' ? false : val);
         }
     },
     created() {
@@ -42,7 +39,7 @@ export default {
             disabled: this.disabled
         })
     },
-    ready() {
+    mounted() {
         for (var c in this.$parent.$children) {
             if (this.$parent.$children[c].$el == this.$el) {
                 this.index = c
