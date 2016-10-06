@@ -8,10 +8,10 @@ Vue.use(VueResource)
 
 Vue.config.devtools = false
 
-Vue.filter('markdown', (value) => marked(value))
+Vue.filter('markdown', (value) => marked(value));
 
 new Vue({
-    el: 'body',
+    el: 'app',
     components: {
         App
     }

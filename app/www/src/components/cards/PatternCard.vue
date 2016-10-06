@@ -1,13 +1,12 @@
 <template>
-<article class="pops-card pops-card--pattern" id="{{pattern.name}}">
-    <a :href=`/patterns/${pattern.name}` class="pops-card__link"><h1 class="pops-card__title">{{ pattern.name
-            }}</h1></a>
+<article class="pops-card pops-card--pattern" v-bind:id="pattern.name">
+    <a v-bind:href="`/patterns/${pattern.name}`" class="pops-card__link"><h1 class="pops-card__title">{{ pattern.name }}</h1></a>
 
-    <iframe class="pops-card__iframe" :src=`/patterns/${pattern.name}` onload="resizeIframe(this)" frameborder="0"></iframe>
+    <iframe class="pops-card__iframe" v-bind:src="`/patterns/${pattern.name}`" onload="resizeIframe(this)" frameborder="0"></iframe>
 
     <tab-set :active="0">
         <tab header="Overview">
-            <div class="pops-card__overview" v-html="pattern.doc | markdown"></div>
+            <div class="pops-card__overview" v-html="markdown(pattern.doc)"></div>
         </tab>
         <tab header="Template">
             <pre><code>{{pattern.template}}</code></pre>
@@ -25,6 +24,7 @@
 <script>
 import Tab from '../Tab.vue'
 import TabSet from '../TabSet.vue'
+import marked from 'marked';
 
 export default {
     components: {
@@ -38,6 +38,9 @@ export default {
         },
         updatePattern(data) {
             this.pattern = this.findPattern(data.patterns)
+        },
+        markdown(data) {
+            return marked(data);
         }
     },
     created() {

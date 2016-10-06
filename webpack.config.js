@@ -40,7 +40,10 @@ let vueConfig = {
         historyApiFallback: true,
         noInfo: true
     },
-    devtool: '#eval-source-map'
+    devtool: '#eval-source-map',
+    resolve: {
+        alias: {vue: 'vue/dist/vue.js'}
+    }
 }
 
 let styleConfig = {
