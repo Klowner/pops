@@ -11,6 +11,7 @@
         "mime": "registry:dt/mime#0.0.0+20160316155526",
         "mkdirp": "registry:dt/mkdirp#0.3.0+20160317120654",
         "node": "registry:dt/node#6.0.0+20160720070758",
+        "pug": "registry:npm/pug#2.0.0+20160913022035",
         "serve-static": "registry:dt/serve-static#0.0.0+20160606155157",
         "socket.io": "registry:dt/socket.io#1.4.4+20160317120654",
         "twig": "registry:dt/twig#0.0.0+20160316155526",

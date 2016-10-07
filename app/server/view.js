@@ -3,6 +3,7 @@ var fs_1 = require('fs');
 var config_1 = require('../bin/config');
 var twig_1 = require('./engines/twig');
 var handlebars_1 = require('./engines/handlebars');
+var pug_1 = require('./engines/pug');
 var config = new config_1.Config().getConfig();
 var View = (function () {
     function View(ext) {
@@ -18,6 +19,12 @@ var View = (function () {
             },
             'hbs': function () {
                 _this.engine = new handlebars_1.Handlebars();
+            },
+            'jade': function () {
+                _this.engine = new pug_1.Pug();
+            },
+            'pug': function () {
+                _this.engine = new pug_1.Pug();
             },
             'default': function () {
                 _this.engine = new handlebars_1.Handlebars();
