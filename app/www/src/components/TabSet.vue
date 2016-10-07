@@ -31,15 +31,12 @@ export default {
         effect: {
             type: String,
             default: 'fadein'
-        },
-        active: {
-            type: Number,
-            default: 0
         }
     },
     data() {
         return {
-            renderData: []
+            renderData: [],
+            active: 0
         }
     },
     methods: {
